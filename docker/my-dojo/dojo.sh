@@ -409,10 +409,6 @@ onion() {
     V3_ADDR_MEMPOOL=$( docker exec -it tor cat /var/lib/tor/hsv3mempool/hostname )
     echo "Mempool hidden service address = $V3_ADDR_MEMPOOL"
   fi
-
-  V3_ADDR=$( docker exec -it tor cat /var/lib/tor/hsv3dojo/hostname )
-  echo "Maintenance Tool hidden service address = $V3_ADDR"
-
   if [ "$WHIRLPOOL_INSTALL" == "on" ]; then
     V3_ADDR_WHIRLPOOL=$( docker exec -it tor cat /var/lib/tor/hsv3whirlpool/hostname )
     echo "Your private Whirlpool client (do not share) = $V3_ADDR_WHIRLPOOL"
