@@ -6,7 +6,7 @@
 # Set this option to 'off' for using an indexer hosted outside of Docker
 # or when using a different data source (local bitcoind, OXT)
 # Value: on | off
-INDEXER_INSTALL=off
+INDEXER_INSTALL=on
 
 # Choice which Indexer you would like to install:
 # addrindexrs - basic but fast indexer for your Dojo - takes 8-12 hrs to index

@@ -26,6 +26,7 @@ source_file "$DIR/.env"
 # Export some variables for compose
 export BITCOIND_RPC_EXTERNAL_IP BITCOIND_IP INDEXER_IP INDEXER_RPC_PORT BITCOIND_RPC_USER BITCOIND_RPC_PASSWORD BITCOIND_RPC_PORT
 export TOR_SOCKS_PORT
+
 if [ "$MEMPOOL_INSTALL" == "on" ]; then
   export MEMPOOL_MYSQL_USER MEMPOOL_MYSQL_PASS MEMPOOL_MYSQL_ROOT_PASSWORD MEMPOOL_MYSQL_DATABASE 
 fi
@@ -408,7 +409,9 @@ onion() {
   if [ "$MEMPOOL_INSTALL" == "on" ]; then
     V3_ADDR_MEMPOOL=$( docker exec -it tor cat /var/lib/tor/hsv3mempool/hostname )
     echo "Mempool hidden service address = $V3_ADDR_MEMPOOL"
+    echo " "
   fi
+
   if [ "$WHIRLPOOL_INSTALL" == "on" ]; then
     V3_ADDR_WHIRLPOOL=$( docker exec -it tor cat /var/lib/tor/hsv3whirlpool/hostname )
     echo "Your private Whirlpool client (do not share) = $V3_ADDR_WHIRLPOOL"
@@ -493,7 +496,7 @@ logs() {
       if [ "$INDEXER_INSTALL" == "on" ] && [ "$INDEXER_TYPE" == "addrindexrs" ]; then
         display_logs $1 $2
       else
-        echo -e "Command not supported for your setup.\nCause: Your Dojo is not running the internal indexer"
+        echo -e "Command not supported for your setup.\nCause: Your Dojo is not running the SW indexer"
       fi
       ;;
     fulcrum )
