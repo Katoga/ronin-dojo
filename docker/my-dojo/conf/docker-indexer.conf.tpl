@@ -11,8 +11,8 @@ INDEXER_INSTALL=on
 # Choice which Indexer you would like to install:
 # addrindexrs - basic but fast indexer for your Dojo - takes 8-12 hrs to index
 # Fulcrum - fast indexer, can be used as Electrum server for personal use - takes a 2-3 days to index
-# Value: addrindexrs | fulcrum
-INDEXER_TYPE=addrindexrs
+# Value: addrindexrs | fulcrum | electrs
+INDEXER_TYPE=electrs
 
 # IP address of the local indexer used by Dojo
 # Set value to 172.28.1.6 if INDEXER_INSTALL is set to 'on'

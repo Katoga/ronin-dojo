@@ -55,6 +55,8 @@ select_yaml_files() {
       yamlFiles="$yamlFiles -f $DIR/overrides/indexer.install.yaml"
     elif [ "$INDEXER_TYPE" == "fulcrum" ]; then
       yamlFiles="$yamlFiles -f $DIR/overrides/fulcrum.install.yaml"
+    elif [ "$INDEXER_TYPE" == "electrs" ]; then
+      yamlFiles="$yamlFiles -f $DIR/overrides/electrs.install.yaml"
     fi
   fi
 
@@ -295,6 +297,7 @@ clean() {
   del_images_for samouraiwallet/dojo-nginx "$DOJO_NGINX_VERSION_TAG"
   del_images_for samouraiwallet/dojo-tor "$DOJO_TOR_VERSION_TAG"
   del_images_for samouraiwallet/dojo-indexer "$DOJO_INDEXER_VERSION_TAG"
+  del_images_for samouraiwallet/dojo-electrs "$DOJO_ELECTRS_VERSION_TAG"
   del_images_for samouraiwallet/dojo-fulcrum "$DOJO_FULCRUM_VERSION_TAG"
   del_images_for samouraiwallet/dojo-whirlpool "$DOJO_WHIRLPOOL_VERSION_TAG"
   del_images_for mempool/backend "$MEMPOOL_API_VERSION_TAG"
@@ -434,6 +437,10 @@ onion() {
       V3_ADDR_FULCRUM=$( docker exec -it tor cat /var/lib/tor/hsv3fulcrum/hostname )
       echo "Fulcrum hidden service address = $V3_ADDR_FULCRUM"
       echo " "
+    elif [ "$INDEXER_TYPE" == "electrs" ]; then
+      V3_ADDR_ELECTRS=$( docker exec -it tor cat /var/lib/tor/hsv3electrs/hostname )
+      echo "Electrs hidden service address = $V3_ADDR_ELECTRS"
+      echo " "
     fi
   fi
 }
@@ -509,6 +516,13 @@ logs() {
         echo -e "Command not supported for your setup.\nCause: Your Dojo is not running the Fulcrum indexer"
       fi
       ;;
+    electrs )
+      if [ "$INDEXER_INSTALL" == "on" ] && [ "$INDEXER_TYPE" == "electrs" ]; then
+        display_logs $1 $2
+      else
+        echo -e "Command not supported for your setup.\nCause: Your Dojo is not running the Electrs indexer"
+      fi
+      ;;
     explorer )
       if [ "$EXPLORER_INSTALL" == "on" ]; then
         display_logs $1 $2
@@ -557,6 +571,8 @@ logs() {
           services="$services indexer"
         elif [ "$INDEXER_TYPE" == "fulcrum" ]; then
           services="$services fulcrum"
+        elif [ "$INDEXER_TYPE" == "electrs" ]; then
+          services="$services electrs"
         fi
       fi
       if [ "$WHIRLPOOL_INSTALL" == "on" ]; then
@@ -602,6 +618,7 @@ help() {
   echo "                                  dojo.sh logs nginx          : display the logs of nginx"
   echo "                                  dojo.sh logs indexer        : display the logs of the internal indexer"
   echo "                                  dojo.sh logs fulcrum        : display the logs of the Fulcrum indexer"
+  echo "                                  dojo.sh logs electrs        : display the logs of the Electrs indexer"
   echo "                                  dojo.sh logs node           : display the logs of NodeJS modules (API, Tracker, PushTx API, Orchestrator)"
   echo "                                  dojo.sh logs explorer       : display the logs of the Explorer"
   echo "                                  dojo.sh logs whirlpool      : display the logs of the Whirlpool client"
