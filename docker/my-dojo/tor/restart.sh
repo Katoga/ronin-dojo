@@ -66,4 +66,4 @@ if [ "$INDEXER_INSTALL" == "on" ]; then
 fi
 
 
-tor "${tor_options[@]}"
+exec tor "${tor_options[@]}"
