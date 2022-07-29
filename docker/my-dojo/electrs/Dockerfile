@@ -5,16 +5,16 @@ ENV     INDEXER_VERSION     0.9.7
 ENV     INDEXER_URL         https://github.com/romanz/electrs/archive
 ENV     RUST_LOG            DEBUG
 
-ARG     INDEXER_LINUX_GID
-ARG     INDEXER_LINUX_UID
+ARG     ELECTRS_LINUX_UID
+ARG     ELECTRS_LINUX_GID
 
 RUN     apt-get update && \
         apt-get install -y clang cmake git wget && \
         apt-get install -y libsnappy-dev
 
 # Create group and user indexer
-RUN     addgroup --system -gid ${INDEXER_LINUX_GID} indexer && \
-        adduser --system --ingroup indexer -uid ${INDEXER_LINUX_UID} indexer
+RUN     addgroup --system -gid ${ELECTRS_LINUX_GID} indexer && \
+        adduser --system --ingroup indexer -uid ${ELECTRS_LINUX_UID} indexer
 
 # Create data directory
 RUN     mkdir "$INDEXER_HOME/electrs" && \
