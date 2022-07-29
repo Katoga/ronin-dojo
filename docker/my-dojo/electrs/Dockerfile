@@ -1,16 +1,30 @@
-FROM    rust:1.44.1-slim-buster
+FROM    rust:1.44.1-slim-buster AS builder
 
-ENV     INDEXER_HOME        /home/indexer
 ENV     INDEXER_VERSION     0.9.7
 ENV     INDEXER_URL         https://github.com/romanz/electrs/archive
 ENV     RUST_LOG            DEBUG
 
-ARG     ELECTRS_LINUX_UID
-ARG     ELECTRS_LINUX_GID
-
 RUN     apt-get update && \
         apt-get install -y clang cmake git wget && \
         apt-get install -y libsnappy-dev
+
+# Install electrs
+RUN     set -ex && \
+        wget -qO electrs.tar.gz "$INDEXER_URL/v$INDEXER_VERSION.tar.gz" && \
+        tar -xzvf electrs.tar.gz -C "/tmp/electrs" --strip-components 1 && \
+        rm electrs.tar.gz
+
+RUN     cd /tmp/electrs && \
+        cargo install --locked --path .
+
+FROM    debian:buster-slim
+
+ENV     INDEXER_HOME        /home/indexer
+
+ARG     ELECTRS_LINUX_UID
+ARG     ELECTRS_LINUX_GID
+
+COPY    --from=builder /usr/local/cargo/bin/electrs /usr/bin/electrs
 
 # Create group and user indexer
 RUN     addgroup --system -gid ${ELECTRS_LINUX_GID} indexer && \
@@ -32,22 +46,7 @@ COPY    ./electrs.toml /electrs.toml
 RUN     chown indexer:indexer /electrs.toml && \
         chmod 777 /electrs.toml
 
-# Copy wait-for-it script
-COPY    ./wait-for-it.sh /wait-for-it.sh
-RUN     chown indexer:indexer /wait-for-it.sh && \
-        chmod u+x /wait-for-it.sh && \
-        chmod g+x /wait-for-it.sh
-
-# Install electrs
-RUN     set -ex && \
-        wget -qO electrs.tar.gz "$INDEXER_URL/v$INDEXER_VERSION.tar.gz" && \
-        tar -xzvf electrs.tar.gz -C "$INDEXER_HOME/electrs" --strip-components 1 && \
-        rm electrs.tar.gz
-
 USER    indexer
-
-RUN     cd "$INDEXER_HOME/electrs" && \
-        cargo install --locked --path .
 
 EXPOSE  50001
 EXPOSE  8080

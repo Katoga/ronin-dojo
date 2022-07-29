@@ -13,7 +13,7 @@ indexer_options=(
 if [ "$COMMON_BTC_NETWORK" == "testnet" ]; then
   indexer_options+=(--network="testnet")
 else
-  indexer_options+=(--network="mainnet")
+  indexer_options+=(--network="bitcoin")
 fi
 
-electrs "${indexer_options[@]}"
+exec electrs "${indexer_options[@]}"
