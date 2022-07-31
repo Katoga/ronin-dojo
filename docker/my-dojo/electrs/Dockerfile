@@ -23,6 +23,9 @@ ENV     INDEXER_HOME        /home/indexer
 
 ARG     ELECTRS_LINUX_UID
 ARG     ELECTRS_LINUX_GID
+ARG     BITCOIND_RPC_USER
+ARG     BITCOIND_RPC_PASSWORD
+ARG     DOJO_VERSION_TAG
 
 COPY    --from=builder /usr/local/cargo/bin/electrs /usr/bin/electrs
 
@@ -43,6 +46,11 @@ RUN     chown indexer:indexer /restart.sh && \
 
 # Copy electrs.toml
 COPY    ./electrs.toml /electrs.toml
+RUN     sed -i \
+            -e "s/BITCOIND_RPC_USER/${BITCOIND_RPC_USER}/g" \
+            -e "s/BITCOIND_RPC_PASSWORD/${BITCOIND_RPC_PASSWORD}/g" \
+            -e "s/DOJO_VERSION_TAG/${DOJO_VERSION_TAG}/g" \
+            /electrs.toml
 RUN     chown indexer:indexer /electrs.toml && \
         chmod 777 /electrs.toml
 

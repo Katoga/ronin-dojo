@@ -9,6 +9,9 @@ services:
       args:
         ELECTRS_LINUX_UID: ${ELECTRS_LINUX_UID}
         ELECTRS_LINUX_GID: ${ELECTRS_LINUX_GID}
+        BITCOIND_RPC_USER: ${BITCOIND_RPC_USER}
+        BITCOIND_RPC_PASSWORD: ${BITCOIND_RPC_PASSWORD}
+        DOJO_VERSION_TAG: ${DOJO_VERSION_TAG}
     env_file:
       - ./.env
       - ./conf/docker-common.conf
