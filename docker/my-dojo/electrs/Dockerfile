@@ -2,7 +2,6 @@ FROM    rust:1.44.1-slim-buster AS builder
 
 ENV     INDEXER_VERSION     0.9.7
 ENV     INDEXER_URL         https://github.com/romanz/electrs/archive
-ENV     RUST_LOG            DEBUG
 
 RUN     apt-get update && \
         apt-get install -y clang cmake git wget && \
