@@ -18,34 +18,34 @@ RUN     cd /tmp/electrs && \
 
 FROM    debian:buster-slim
 
-ENV     INDEXER_HOME        /home/indexer
+ENV     INDEXER_HOME        /home/electrs
 
 ARG     ELECTRS_LINUX_UID
 ARG     ELECTRS_LINUX_GID
 
 COPY    --from=builder /usr/local/cargo/bin/electrs /usr/bin/electrs
 
-# Create group and user indexer
-RUN     addgroup --system -gid ${ELECTRS_LINUX_GID} indexer && \
-        adduser --system --ingroup indexer -uid ${ELECTRS_LINUX_UID} indexer
+# Create group and user electrs
+RUN     addgroup --system -gid ${ELECTRS_LINUX_GID} electrs && \
+        adduser --system --ingroup electrs -uid ${ELECTRS_LINUX_UID} electrs
 
 # Create data directory
 RUN     mkdir "$INDEXER_HOME/electrs" && \
         mkdir "$INDEXER_HOME/db" && \
-        chown -h indexer:indexer "$INDEXER_HOME/electrs" && \
-        chown -h indexer:indexer "$INDEXER_HOME/db"
+        chown -h electrs:electrs "$INDEXER_HOME/electrs" && \
+        chown -h electrs:electrs "$INDEXER_HOME/db"
 
 # Copy restart script
 COPY    ./restart.sh /restart.sh
-RUN     chown indexer:indexer /restart.sh && \
+RUN     chown electrs:electrs /restart.sh && \
         chmod 777 /restart.sh
 
 # Copy electrs.toml
 COPY    ./electrs.toml /electrs.toml
-RUN     chown indexer:indexer /electrs.toml && \
+RUN     chown electrs:electrs /electrs.toml && \
         chmod 777 /electrs.toml
 
-USER    indexer
+USER    electrs
 
 EXPOSE  50001
 EXPOSE  8080
