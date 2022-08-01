@@ -4,7 +4,7 @@ ENV     ELECTRS_VERSION     0.9.7
 ENV     ELECTRS_URL         https://github.com/romanz/electrs/archive
 
 RUN     apt-get update && \
-        apt-get install -y clang cmake git wget && \
+        apt-get install -y clang cmake wget && \
         apt-get install -y libsnappy-dev
 
 # Install electrs
