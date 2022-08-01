@@ -48,6 +48,5 @@ RUN     chown electrs:electrs /electrs.toml && \
 USER    electrs
 
 EXPOSE  50001
-EXPOSE  8080
 
 STOPSIGNAL SIGINT
