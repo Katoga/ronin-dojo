@@ -23,9 +23,6 @@ ENV     INDEXER_HOME        /home/indexer
 
 ARG     ELECTRS_LINUX_UID
 ARG     ELECTRS_LINUX_GID
-ARG     BITCOIND_RPC_USER
-ARG     BITCOIND_RPC_PASSWORD
-ARG     DOJO_VERSION_TAG
 
 COPY    --from=builder /usr/local/cargo/bin/electrs /usr/bin/electrs
 
