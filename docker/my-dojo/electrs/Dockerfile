@@ -1,7 +1,7 @@
 FROM    rust:1.44.1-slim-buster AS builder
 
-ENV     INDEXER_VERSION     0.9.7
-ENV     INDEXER_URL         https://github.com/romanz/electrs/archive
+ENV     ELECTRS_VERSION     0.9.7
+ENV     ELECTRS_URL         https://github.com/romanz/electrs/archive
 
 RUN     apt-get update && \
         apt-get install -y clang cmake git wget && \
@@ -9,7 +9,7 @@ RUN     apt-get update && \
 
 # Install electrs
 RUN     set -ex && \
-        wget -qO electrs.tar.gz "$INDEXER_URL/v$INDEXER_VERSION.tar.gz" && \
+        wget -qO electrs.tar.gz "$ELECTRS_URL/v$ELECTRS_VERSION.tar.gz" && \
         tar -xzvf electrs.tar.gz -C "/tmp/electrs" --strip-components 1 && \
         rm electrs.tar.gz
 
@@ -18,7 +18,7 @@ RUN     cd /tmp/electrs && \
 
 FROM    debian:buster-slim
 
-ENV     INDEXER_HOME        /home/electrs
+ENV     ELECTRS_HOME        /home/electrs
 
 ARG     ELECTRS_LINUX_UID
 ARG     ELECTRS_LINUX_GID
@@ -30,10 +30,10 @@ RUN     addgroup --system -gid ${ELECTRS_LINUX_GID} electrs && \
         adduser --system --ingroup electrs -uid ${ELECTRS_LINUX_UID} electrs
 
 # Create data directory
-RUN     mkdir "$INDEXER_HOME/electrs" && \
-        mkdir "$INDEXER_HOME/db" && \
-        chown -h electrs:electrs "$INDEXER_HOME/electrs" && \
-        chown -h electrs:electrs "$INDEXER_HOME/db"
+RUN     mkdir "$ELECTRS_HOME/electrs" && \
+        mkdir "$ELECTRS_HOME/db" && \
+        chown -h electrs:electrs "$ELECTRS_HOME/electrs" && \
+        chown -h electrs:electrs "$ELECTRS_HOME/db"
 
 # Copy restart script
 COPY    ./restart.sh /restart.sh
