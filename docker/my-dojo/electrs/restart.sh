@@ -10,6 +10,12 @@ indexer_options=(
   --index-lookup-limit
 )
 
+sed -i \
+  -e "s/BITCOIND_RPC_USER/${BITCOIND_RPC_USER}/g" \
+  -e "s/BITCOIND_RPC_PASSWORD/${BITCOIND_RPC_PASSWORD}/g" \
+  -e "s/DOJO_VERSION_TAG/${DOJO_VERSION_TAG}/g" \
+  ./electrs.toml
+
 if [ "$COMMON_BTC_NETWORK" == "testnet" ]; then
   indexer_options+=(--network="testnet")
 else

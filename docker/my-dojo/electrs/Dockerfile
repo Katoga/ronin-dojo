@@ -46,11 +46,6 @@ RUN     chown indexer:indexer /restart.sh && \
 
 # Copy electrs.toml
 COPY    ./electrs.toml /electrs.toml
-RUN     sed -i \
-            -e "s/BITCOIND_RPC_USER/${BITCOIND_RPC_USER}/g" \
-            -e "s/BITCOIND_RPC_PASSWORD/${BITCOIND_RPC_PASSWORD}/g" \
-            -e "s/DOJO_VERSION_TAG/${DOJO_VERSION_TAG}/g" \
-            /electrs.toml
 RUN     chown indexer:indexer /electrs.toml && \
         chmod 777 /electrs.toml
 
