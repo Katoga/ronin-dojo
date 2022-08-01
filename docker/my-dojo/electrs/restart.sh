@@ -13,7 +13,7 @@ indexer_options=(
   --db-dir="/home/indexer/db"
   --electrum-rpc-addr="$INDEXER_IP:$INDEXER_RPC_PORT"
   --daemon-p2p-addr="$BITCOIND_IP:8333"
-  --index-lookup-limit
+  --index-lookup-limit="$INDEXER_TXID_LIMIT"
 )
 
 if [ "$COMMON_BTC_NETWORK" == "testnet" ]; then
