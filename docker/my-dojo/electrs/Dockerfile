@@ -2,6 +2,7 @@ FROM    rust:1.44.1-slim-buster AS builder
 
 ENV     ELECTRS_VERSION     0.9.7
 ENV     ELECTRS_URL         https://github.com/romanz/electrs/archive
+ENV     ELECTRS_SHA256      e6fadcec3e6c93b4008cf892ded2d688953c99440ec11745ddb49372474a6a38
 
 RUN     apt-get update && \
         apt-get install -y clang cmake wget && \
@@ -10,6 +11,7 @@ RUN     apt-get update && \
 # Install electrs
 RUN     set -ex && \
         wget -qO electrs.tar.gz "$ELECTRS_URL/v$ELECTRS_VERSION.tar.gz" && \
+        echo "${ELECTRS_SHA256} electrs.tar.gz" | sha256sum -c - && \
         tar -xzvf electrs.tar.gz -C "/tmp/electrs" --strip-components 1 && \
         rm electrs.tar.gz
 
