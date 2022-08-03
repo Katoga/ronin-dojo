@@ -1,0 +1,37 @@
+version: "3.7"
+
+services:
+  electrs:
+    image: "samouraiwallet/dojo-electrs:${DOJO_ELECTRS_VERSION_TAG}"
+    container_name: electrs
+    build:
+      context: ./electrs
+      args:
+        ELECTRS_LINUX_UID: ${ELECTRS_LINUX_UID}
+        ELECTRS_LINUX_GID: ${ELECTRS_LINUX_GID}
+    env_file:
+      - ./.env
+      - ./conf/docker-common.conf
+      - ./conf/docker-bitcoind.conf
+      - ./conf/docker-indexer.conf
+    restart: on-failure
+    command: /restart.sh
+    expose:
+      - "50001"
+    volumes:
+      - data-electrs:/home/electrs
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "20m"
+        max-file: "10"
+    stop_grace_period: 1m
+    depends_on:
+      - tor
+      - node
+    networks:
+      dojonet:
+        ipv4_address: ${NET_DOJO_INDEXER_IPV4}
+
+volumes:
+  data-electrs:

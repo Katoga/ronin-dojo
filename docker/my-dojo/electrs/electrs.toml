@@ -1,0 +1,2 @@
+auth = "BITCOIND_RPC_USER:BITCOIND_RPC_PASSWORD"
+server_banner = "Welcome to your RoninDojo DOJO_VERSION_TAG Electrs Server!"
