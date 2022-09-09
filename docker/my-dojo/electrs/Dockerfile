@@ -10,6 +10,8 @@ RUN     apt-get update && \
 
 # Install electrs
 RUN     set -ex && \
+        mkdir /tmp/electrs && \
+        cd /tmp/electrs && \
         wget -qO electrs.tar.gz "$ELECTRS_URL/v$ELECTRS_VERSION.tar.gz" && \
         echo "${ELECTRS_SHA256} electrs.tar.gz" | sha256sum -c - && \
         tar -xzvf electrs.tar.gz -C "/tmp/electrs" --strip-components 1 && \
