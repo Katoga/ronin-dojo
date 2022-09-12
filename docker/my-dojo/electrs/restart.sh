@@ -1,11 +1,8 @@
 #!/bin/bash
 set -e
 
-sed -i \
-  -e "s/BITCOIND_RPC_USER/${BITCOIND_RPC_USER}/g" \
-  -e "s/BITCOIND_RPC_PASSWORD/${BITCOIND_RPC_PASSWORD}/g" \
-  -e "s/DOJO_VERSION_TAG/${DOJO_VERSION_TAG}/g" \
-  /electrs.toml
+echo "auth = \"${BITCOIND_RPC_USER}:${BITCOIND_RPC_PASSWORD}\"" > electrs.toml
+echo "server_banner = \"Welcome to your RoninDojo ${DOJO_VERSION_TAG} Electrs Server!"" >> electrs.toml
 
 indexer_options=(
   --log-filters="INFO"

@@ -7,7 +7,8 @@ RUN     apt-get update && \
         apt-get install -y clang cmake git
 
 # Install addrindexrs
-RUN     mkdir /tmp/addrindexrs && \
+RUN     set -ex && \
+        mkdir /tmp/addrindexrs && \
         cd /tmp/addrindexrs && \
         git clone "$INDEXER_URL" "/tmp/addrindexrs" && \
         git checkout "tags/v$INDEXER_VERSION"
