@@ -16,7 +16,7 @@ services:
             - ./conf/docker-bitcoind.conf
             - ./conf/docker-indexer.conf
         environment:
-            MEMPOOL_BACKEND: "none"
+            MEMPOOL_BACKEND: "electrs"
             CORE_RPC_HOST: ${BITCOIND_IP}
             CORE_RPC_PORT: ${BITCOIND_RPC_PORT}
             CORE_RPC_USERNAME: ${BITCOIND_RPC_USER}
