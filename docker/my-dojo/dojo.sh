@@ -305,7 +305,7 @@ clean() {
   del_images_for mariadb "$MEMPOOL_DB_VERSION_TAG"
   docker container prune -f
   docker volume prune -f
-  docker image prune -f
+  docker image prune -f -a
 }
 
 # Upgrade
