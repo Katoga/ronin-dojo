@@ -1,8 +1,8 @@
 FROM    rust:1.44.1-slim-buster AS builder
 
-ENV     ELECTRS_VERSION     0.9.7
+ENV     ELECTRS_VERSION     0.9.9
 ENV     ELECTRS_URL         https://github.com/romanz/electrs/archive
-ENV     ELECTRS_SHA256      e6fadcec3e6c93b4008cf892ded2d688953c99440ec11745ddb49372474a6a38
+ENV     ELECTRS_SHA256      d54519fb999d1742dbfd3e2cd0970118d6c33df9e8be4f2b8aca7d13b4d20fca
 
 RUN     apt-get update && \
         apt-get install -y clang cmake wget && \
