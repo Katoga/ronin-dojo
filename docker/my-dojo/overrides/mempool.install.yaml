@@ -40,7 +40,6 @@ services:
                 max-file: "10"
         depends_on:
             - bitcoind
-            - indexer
             - mempool_db
         networks:
             dojonet:
