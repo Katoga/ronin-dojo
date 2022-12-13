@@ -74,22 +74,20 @@ class MempoolProcessor {
     /**
      * Stop processing
      */
-    async stop() {
+    stop() {
         clearInterval(this.checkUnconfirmedId)
         clearInterval(this.processMempoolId)
         //clearInterval(this.displayStatsId)
 
-        this.txSock.disconnect(keys.bitcoind.zmqTx).close()
-        this.pushTxSock.disconnect(keys.ports.notifpushtx).close()
-        this.orchestratorSock.disconnect(keys.ports.orchestrator).close()
-
-        return Promise.resolve()
+        this.txSock.close()
+        this.pushTxSock.close()
+        this.orchestratorSock.close()
     }
 
     /**
      * Initialiaze ZMQ sockets
      */
-    async initSockets() {
+    initSockets() {
         // Socket listening to pushTx
         this.pushTxSock = zmq.socket('sub')
         this.pushTxSock.connect(`tcp://127.0.0.1:${keys.ports.notifpushtx}`)
@@ -191,11 +189,9 @@ class MempoolProcessor {
                 this.mempoolBuffer.addTransaction(tx)
             } catch (error) {
                 Logger.error(error, 'Tracker : MempoolProcessor.onTx()')
-                return Promise.reject(error)
+                throw error
             }
         }
-
-        return Promise.resolve()
     }
 
 
@@ -221,7 +217,7 @@ class MempoolProcessor {
             }
         } catch (error) {
             Logger.error(error, 'Tracker : MempoolProcessor.onPushTx()')
-            return Promise.reject(error)
+            throw error
         }
     }
 
@@ -310,7 +306,7 @@ class MempoolProcessor {
             }
 
             // Tolerate a delay of 6 blocks
-            this.isActive = (highestHeader >= 550000) && (highestHeader <= highestBlock.blockHeight + 6)
+            this.isActive = (highestHeader >= 746400) && (highestHeader <= highestBlock.blockHeight + 6)
         } catch (error) {
             Logger.error(error, 'Tracker : MempoolProcessor._refreshActiveStatus()')
         }

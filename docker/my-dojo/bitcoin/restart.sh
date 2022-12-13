@@ -30,7 +30,6 @@ bitcoind_options=(
   -txindex=1
   -zmqpubhashblock=tcp://0.0.0.0:9502
   -zmqpubrawtx=tcp://0.0.0.0:9501
-  -deprecatedrpc=addresses
 )
 
 if [ "$BITCOIND_LISTEN_MODE" == "on" ]; then
@@ -44,14 +43,12 @@ if [ "$BITCOIND_RPC_EXTERNAL" == "on" ]; then
   bitcoind_options+=(-zmqpubrawblock=tcp://0.0.0.0:9503)
 fi
 
+if [ "$BITCOIND_BLOOM_FILTERS" == "on" ]; then
+  bitcoind_options+=(-peerbloomfilters=1)
+fi
+
 if [ "$COMMON_BTC_NETWORK" == "testnet" ]; then
   bitcoind_options+=(-testnet)
 fi
 
-bitcoind "${bitcoind_options[@]}" || true
-
-# Keep the container up
-while true
-do
-  sleep 1
-done
+exec bitcoind "${bitcoind_options[@]}"

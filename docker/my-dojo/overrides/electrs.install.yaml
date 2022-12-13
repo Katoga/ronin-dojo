@@ -1,14 +1,14 @@
 version: "3.7"
 
 services:
-  indexer:
-    image: "samouraiwallet/dojo-indexer:${DOJO_INDEXER_VERSION_TAG}"
-    container_name: indexer
+  electrs:
+    image: "samouraiwallet/dojo-electrs:${DOJO_ELECTRS_VERSION_TAG}"
+    container_name: electrs
     build:
-      context: ./indexer
+      context: ./electrs
       args:
-        INDEXER_LINUX_UID: ${INDEXER_LINUX_UID}
-        INDEXER_LINUX_GID: ${INDEXER_LINUX_GID}
+        ELECTRS_LINUX_UID: ${ELECTRS_LINUX_UID}
+        ELECTRS_LINUX_GID: ${ELECTRS_LINUX_GID}
     env_file:
       - ./.env
       - ./conf/docker-common.conf
@@ -18,19 +18,20 @@ services:
     command: /restart.sh
     expose:
       - "50001"
-      - "8080"
     volumes:
-      - data-indexer:/home/indexer
+      - data-electrs:/home/electrs
     logging:
       driver: "json-file"
       options:
         max-size: "20m"
         max-file: "10"
+    stop_grace_period: 1m
     depends_on:
+      - tor
       - node
     networks:
       dojonet:
         ipv4_address: ${NET_DOJO_INDEXER_IPV4}
 
 volumes:
-  data-indexer:
+  data-electrs:

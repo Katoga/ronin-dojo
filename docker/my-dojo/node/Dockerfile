@@ -1,19 +1,14 @@
-FROM    node:14-alpine
+FROM    node:16-alpine AS builder
 
-ENV     NODE_ENV production
-
-ENV     APP_DIR                 /home/node/app
-ARG     TOR_LINUX_GID
+ENV     NODE_ENV    production
+ENV     APP_DIR     /home/node/app
 
 RUN     set -ex && \
-        apk --no-cache add shadow bash gcc g++ make python3 curl cmake
+        apk --no-cache add gcc g++ make python3 curl cmake
 
-# Add node user to tor group
-RUN     addgroup -S -g ${TOR_LINUX_GID} tor && \
-        usermod -a -G tor node
-
-# Install forever
-RUN     npm install -g forever
+# Update NPM to latest version
+RUN     set -ex && \
+        npm i -g npm
 
 # Create app directory
 RUN     mkdir "$APP_DIR"
@@ -23,10 +18,33 @@ COPY    . "$APP_DIR"
 
 # Install node modules required by the app
 RUN     cd "$APP_DIR" && \
-        npm ci --only=production
+        npm install --omit=dev
+
+FROM    node:16-alpine
+
+ENV     NODE_ENV    production
+ENV     APP_DIR     /home/node/app
+
+ARG     TOR_LINUX_GID
+
+RUN     set -ex && \
+        apk --no-cache add shadow bash
+
+# Add node user to tor group
+RUN     addgroup -S -g ${TOR_LINUX_GID} tor && \
+        usermod -a -G tor node
+
+# Install PM2
+RUN     npm install -g pm2
+
+# Copy app source files into APP_DIR
+COPY    --from=builder $APP_DIR $APP_DIR
 
 # Copy config file
 COPY    ./docker/my-dojo/node/keys.index.js "$APP_DIR/keys/index.js"
+
+# Copy PM2 config file
+COPY    ./docker/my-dojo/node/pm2.config.cjs "$APP_DIR/pm2.config.cjs"
 
 # Copy restart script
 COPY    ./docker/my-dojo/node/restart.sh "$APP_DIR/restart.sh"

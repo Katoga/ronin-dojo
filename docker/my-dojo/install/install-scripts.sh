@@ -36,6 +36,13 @@ else
   source ./conf/docker-mempool.conf.tpl
 fi
 
+if [ -f ./conf/docker-indexer.conf ]; then
+  source ./conf/docker-indexer.conf
+else
+  source ./conf/docker-indexer.conf.tpl
+fi
+
+
 # Confirm installation
 get_confirmation() {
   while true; do

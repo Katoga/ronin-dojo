@@ -3,26 +3,110 @@
 
 ## Releases ##
 
-- [v1.14.0](#1_14_0)
-- [v1.13.0](#1_13_0)
-- [v1.12.1](#1_12_1)
-- [v1.12.0](#1_12_0)
-- [v1.11.0](#1_11_0)
-- [v1.10.1](#1_10_1)
-- [v1.10.0](#1_10_0)
-- [v1.9.0](#1_9_0)
-- [v1.8.1](#1_8_1)
-- [v1.8.0](#1_8_0)
-- [v1.7.0](#1_7_0)
-- [v1.6.0](#1_6_0)
-- [v1.5.0](#1_5_0)
-- [v1.4.1](#1_4_1)
-- [v1.4.0](#1_4_0)
-- [v1.3.0](#1_3_0)
-- [v1.2.0](#1_2_0)
-- [v1.1.0](#1_1_0)
+- [v1.17.0](#samourai-dojo-v1170)
+- [v1.16.1](#samourai-dojo-v1161)
+- [v1.16.0](#samourai-dojo-v1160)
+- [v1.15.0](#samourai-dojo-v1150)
+- [v1.14.0](#samourai-dojo-v1140)
+- [v1.13.0](#samourai-dojo-v1130)
+- [v1.12.1](#samourai-dojo-v1121)
+- [v1.12.0](#samourai-dojo-v1120)
+- [v1.11.0](#samourai-dojo-v1110)
+- [v1.10.1](#samourai-dojo-v1101)
+- [v1.10.0](#samourai-dojo-v1100)
+- [v1.9.0](#samourai-dojo-v190)
+- [v1.8.1](#samourai-dojo-v181)
+- [v1.8.0](#samourai-dojo-v180)
+- [v1.7.0](#samourai-dojo-v170)
+- [v1.6.0](#samourai-dojo-v160)
+- [v1.5.0](#samourai-dojo-v150)
+- [v1.4.1](#samourai-dojo-v141)
+- [v1.4.0](#samourai-dojo-v140)
+- [v1.3.0](#samourai-dojo-v130)
+- [v1.2.0](#samourai-dojo-v120)
+- [v1.1.0](#samourai-dojo-v110)
 
-<a name="1_14_0"/>
+## Samourai Dojo v1.17.0 ##
+
+### Change log ###
+
+#### Architecture ####
+- [9d84bfe6](https://code.samourai.io/dojo/samourai-dojo/-/commit/9d84bfe6) - upgrade Node.js
+- [90c7cd6d](https://code.samourai.io/dojo/samourai-dojo/-/commit/90c7cd6d) - use PM2 for process management
+- [515ae1b6](https://code.samourai.io/dojo/samourai-dojo/-/commit/515ae1b6) - bump block height defining IBD
+
+#### Bugfixes ####
+
+- [757cc927](https://code.samourai.io/dojo/samourai-dojo/-/commit/757cc927) - fix import/rescan with local importer
+- [9aa604c0](https://code.samourai.io/dojo/samourai-dojo/-/commit/9aa604c0) - fix tyxpos
+- [9b11bd56](https://code.samourai.io/dojo/samourai-dojo/-/commit/9b11bd56) - fix DB errors
+
+### Credits ###
+- pajasevi
+- Diverter
+
+## Samourai Dojo v1.16.1 ##
+
+### Change log ###
+
+#### Bugfixes ####
+- [d4098ee7](https://code.samourai.io/dojo/samourai-dojo/-/commit/d4098ee7) - fix import of socks-proxy-agent
+- [f7fcde06](https://code.samourai.io/dojo/samourai-dojo/-/commit/f7fcde06) - fix network setting for indexer
+
+## Samourai Dojo v1.16.0 ##
+
+### Change log ###
+
+#### Features ####
+- [6e593919](https://code.samourai.io/dojo/samourai-dojo/-/commit/6e593919) - updated Tor to v0.4.7.8
+- [3aea485f](https://code.samourai.io/dojo/samourai-dojo/-/commit/3aea485f) - updated Whirlpool CLI to v0.10.15
+- [10f483e1](https://code.samourai.io/dojo/samourai-dojo/-/commit/10f483e1) - updated Fulcrum to v1.7.0
+- [369d0d01](https://code.samourai.io/dojo/samourai-dojo/-/commit/369d0d01) - updated Bitcoin Core to v23.0
+- [ddc9a780](https://code.samourai.io/dojo/samourai-dojo/-/commit/ddc9a780) - added new endpoint to get raw tx hex from tx id
+
+#### Bugfixes ####
+- [8873197b](https://code.samourai.io/dojo/samourai-dojo/-/commit/8873197b) - fixed testnet/mainnet config option of addrindexrs
+- [ddef6c40](https://code.samourai.io/dojo/samourai-dojo/-/commit/ddef6c40) - fixed docker container execution and termination
+- [672a450c](https://code.samourai.io/dojo/samourai-dojo/-/commit/672a450c) - minor dojo.sh fixes
+
+#### Architecture ####
+- [2c067848](https://code.samourai.io/dojo/samourai-dojo/-/commit/2c067848) - updated Node.js dependencies
+- [79651aee](https://code.samourai.io/dojo/samourai-dojo/-/commit/79651aee) - raised max connections in db low_mem config
+- [d1d234ac](https://code.samourai.io/dojo/samourai-dojo/-/commit/d1d234ac) - use Docker buildkit if available
+- [ead1fa7a](https://code.samourai.io/dojo/samourai-dojo/-/commit/ead1fa7a) - tweak docker compose dependency tree
+
+### Credits ###
+- pajasevi
+- dammkewl
+- Diverter
+
+## Samourai Dojo v1.15.0 ##
+
+### Notable changes ###
+
+#### Added option to use Fulcrum as an indexer ####
+
+#### Added option to enable bloom filters in Bitcoin Core ####
+
+### Change log ###
+
+#### Features ####
+- [4768e8eb](https://code.samourai.io/dojo/samourai-dojo/-/commit/4768e8eb) - added option to Fulcrum as an indexer
+- [fafa773b](https://code.samourai.io/dojo/samourai-dojo/-/commit/fafa773b) - added option to enable bloom filters in bitcoin core
+- [306bca58](https://code.samourai.io/dojo/samourai-dojo/-/commit/306bca58) - check for duplicate TX output addresses instrict mode
+- [b1b2b90a](https://code.samourai.io/dojo/samourai-dojo/-/commit/b1b2b90a) - better docker cleanup after upgrade
+
+#### Architecture ####
+- [47acfbde](https://code.samourai.io/dojo/samourai-dojo/-/commit/47acfbde) - added new electrum client for communication with Electrum RPC
+- [e452a289](https://code.samourai.io/dojo/samourai-dojo/-/commit/e452a289) - fixed ESLint errors
+- [56be1821](https://code.samourai.io/dojo/samourai-dojo/-/commit/56be1821) - updated Node.js dependencies
+- [ff3f2525](https://code.samourai.io/dojo/samourai-dojo/-/commit/ff3f2525) - removed unnecessary Node.js package
+
+### Credits ###
+- pajasevi
+- BTCxZelko
+- dammkewl
+- K3tan
 
 ## Samourai Dojo v1.14.0 ##
 
@@ -50,8 +134,6 @@ Docker build when installing or upgrading is now faster thanks to parallelizatio
 - [#mr264](https://code.samourai.io/dojo/samourai-dojo/-/merge_requests/264) - updated Node.js dependencies
 - [7da28b16](https://code.samourai.io/dojo/samourai-dojo/-/commit/7da28b16db7a63e9b70f6884d07495ef6447167e) - switched to more performant MySQL library and refactored MySQL queries
 
-<a name="1_13_0"/>
-
 ## Samourai Dojo v1.13.0 ##
 
 ### Notable changes ###
@@ -71,7 +153,7 @@ Thanks to updated bitcoinjs-lib, Dojo now supports P2TR outputs
 - [#mr262](https://code.samourai.io/dojo/samourai-dojo/-/merge_requests/262) added ability to copy pairing payload from DMT
 - [#mr263](https://code.samourai.io/dojo/samourai-dojo/-/merge_requests/263) raise indexer RPC timeout
 - [#mr264](https://code.samourai.io/dojo/samourai-dojo/-/merge_requests/264) updated bitcoinjs-lib, added support for P2TR outputs
-- [#mr266](https://code.samourai.io/dojo/samourai-dojo/-/merge_requests/266) updated BTC-RPC Explorer to v3.3.0 
+- [#mr266](https://code.samourai.io/dojo/samourai-dojo/-/merge_requests/266) updated BTC-RPC Explorer to v3.3.0
 
 #### Architecture ####
 - refactored codebase to use ES modules for more efficiency
@@ -82,8 +164,6 @@ Thanks to updated bitcoinjs-lib, Dojo now supports P2TR outputs
 - Aaron Dewes
 - ElkimXOC
 - Crazyk031
-
-<a name="1_12_1"/>
 
 ## Samourai Dojo v1.12.1 ##
 
@@ -96,8 +176,6 @@ Thanks to updated bitcoinjs-lib, Dojo now supports P2TR outputs
 #### Credits ####
 - pajasevi
 - Taylor Helsper
-
-<a name="1_12_0"/>
 
 ## Samourai Dojo v1.12.0 ##
 
@@ -136,8 +214,6 @@ Stability issues have been encountered on non-standard installations which conta
 - pajasevi
 - Ketominer
 
-<a name="1_11_0"/>
-
 ## Samourai Dojo v1.11.0 ##
 
 ## Breaking ##
@@ -158,8 +234,6 @@ Stability issues have been encountered on non-standard installations which conta
 - [commit 3ee4ecc6](https://code.samourai.io/dojo/samourai-dojo/-/commit/3ee4ecc645dc88632f4e7bfd00fafe602bcaef13) fix importing from local_bitcoind
 - other minor fixes
 
-<a name="1_10_1"/>
-
 ## Samourai Dojo v1.10.1 ##
 
 #### Bug fixes ####
@@ -178,8 +252,6 @@ Stability issues have been encountered on non-standard installations which conta
 - kenshin-samourai
 - zeroleak
 
-
-<a name="1_10_0"/>
 
 ## Samourai Dojo v1.10.0 ##
 
@@ -280,9 +352,6 @@ Upgrade to addrindexrs v0.5.0
 - MrHash
 - pajasevi
 
-
-
-<a name="1_9_0"/>
 
 ## Samourai Dojo v1.9.0 ##
 
@@ -427,8 +496,6 @@ Upgrade to addrindexrs v0.4.0
 - likewhoa
 
 
-<a name="1_8_1"/>
-
 ## Samourai Dojo v1.8.1 ##
 
 ### Notable changes ###
@@ -443,8 +510,6 @@ Upgrade to Tor v0.4.5.4-rc for a fix mitigating attacks on Tor v3 hidden service
 
 - [320f8cbf](https://code.samourai.io/dojo/samourai-dojo/-/commit/320f8cbfbe5b6a1e59f5154110216758ed08b9dc) upgrade tor to v0.4.5.4
 
-
-<a name="1_8_0"/>
 
 ## Samourai Dojo v1.8.0 ##
 
@@ -532,8 +597,6 @@ Starting with this version, the /multiaddr and /unspent endpoints are marked as 
 - zeroleak
 
 
-<a name="1_7_0"/>
-
 ## Samourai Dojo v1.7.0 ##
 
 
@@ -576,8 +639,6 @@ A new config parameter `WHIRLPOOL_RESYNC` is added to docker-whirlpool.conf. Whe
 - kenshin-samourai
 - zeroleak
 
-
-<a name="1_6_0"/>
 
 ## Samourai Dojo v1.6.0 ##
 
@@ -681,8 +742,6 @@ Upgrade to [addrindexrs](https://github.com/Samourai-Wallet/addrindexrs) v0.3.0
 - zeroleak
 
 
-<a name="1_5_0"/>
-
 ## Samourai Dojo v1.5.0 ##
 
 
@@ -768,8 +827,6 @@ Upgrade to Bitcoin Core v0.19.1
 - LaurentMT
 
 
-<a name="1_4_1"/>
-
 ## Samourai Dojo v1.4.1 ##
 
 
@@ -810,8 +867,6 @@ This release removes automatic restarts of the bitcoind container when bitcoind 
 - LaurentMT
 - mj
 
-
-<a name="1_4_0"/>
 
 ## Samourai Dojo v1.4.0 ##
 
@@ -883,8 +938,6 @@ Starting with this release, Dojo is automatically launched when the docker daemo
 - kenshin-samourai
 - LaurentMT
 
-
-<a name="1_3_0"/>
 
 ## Samourai Dojo v1.3.0 ##
 
@@ -990,8 +1043,6 @@ The bitcoinjs library has been updated to v5.1.4.
 - nickodev
 
 
-<a name="1_2_0"/>
-
 ## Samourai Dojo v1.2.0 ##
 
 
@@ -1043,8 +1094,6 @@ See [issue #59](https://github.com/Samourai-Wallet/samourai-dojo/issues/59).
 - PuraVida
 - pxsocs
 
-
-<a name="1_1_0"/>
 
 ## Samourai Dojo v1.1.0 ##
 
