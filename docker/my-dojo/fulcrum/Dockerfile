@@ -64,6 +64,11 @@ COPY    ./fulcrum.conf /etc/fulcrum.conf
 RUN     chown fulcrum:fulcrum /etc/fulcrum.conf && \
         chmod 777 /etc/fulcrum.conf
 
+# Copy fulcrum banner.txt
+COPY	./banner.txt /etc/banner.txt
+RUN	chown fulcrum:fulcrum /etc/banner.txt && \
+	chmod 777 /etc/banner.txt
+
 USER    fulcrum
 
 EXPOSE  50001
