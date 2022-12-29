@@ -245,34 +245,15 @@ uninstall() {
   fi
 }
 
-# Clean-up (remove old docker images)
-del_images_for() {
-  # $1: image name
-  # $2: most recent version of the image (do not delete this one)
-  docker image ls | grep "$1" | sed "s/ \+/,/g" | cut -d"," -f2 | while read -r version ; do
-    if [ "$2" != "$version" ]; then
-      docker image rm -f "$1:$version"
-    fi
-  done
-}
-
 clean() {
   # remove unused docker containers
-  docker rm -v $(docker ps --all --format "{{.ID}} {{.Image}}" --filter "status=exited" | grep "samouraiwallet/dojo-" | cut -d" " -f1) 2> /dev/null
+  docker rm -v $(docker ps --all --format "{{.ID}} {{.Image}}" --filter "status=exited" | cut -d" " -f1) 2> /dev/null
   # remove unused docker volumes
   docker volume rm $(docker volume ls --format "{{.Name}}" | grep "my-dojo_data") 2> /dev/null
   # remove dangling docker images
   docker rmi $(docker images --filter "dangling=true" -q) 2> /dev/null
   # remove unused docker images
-  docker rmi $(docker images "samouraiwallet/dojo-*" -q) 2> /dev/null
-
-  del_images_for mempool/backend "$MEMPOOL_API_VERSION_TAG"
-  del_images_for mempool/frontend "$MEMPOOL_WEB_VERSION_TAG"
-  del_images_for mariadb "$MEMPOOL_DB_VERSION_TAG"
-
-  docker container prune -f
-  docker volume prune -f
-  docker image prune -f -a
+  docker rmi $(docker images -q) 2> /dev/null
 }
 
 # Upgrade
