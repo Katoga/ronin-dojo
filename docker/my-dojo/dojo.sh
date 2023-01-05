@@ -5,6 +5,16 @@ export DOCKER_BUILDKIT=1
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
+get_docker_compose() {
+  if docker compose version > /dev/null ; then
+      echo "docker compose"
+  else
+      echo "docker-compose"
+  fi
+}
+
+docker_compose=$(get_docker_compose)
+
 # Source a file
 source_file() {
   if [ -f $1 ]; then
@@ -80,13 +90,13 @@ select_yaml_files() {
 # Docker build
 docker_build() {
   yamlFiles=$(select_yaml_files)
-  eval "docker compose $yamlFiles build --parallel $@"
+  eval "$docker_compose $yamlFiles build --parallel $@"
 }
 
 # Docker up
 docker_up() {
   yamlFiles=$(select_yaml_files)
-  eval "docker compose $yamlFiles up $@ -d"
+  eval "$docker_compose $yamlFiles up $@ -d"
 }
 
 # Start
@@ -117,7 +127,7 @@ stop() {
   fi
   # Stop docker containers
   yamlFiles=$(select_yaml_files)
-  eval "docker compose $yamlFiles stop"
+  eval "$docker_compose $yamlFiles stop"
 }
 
 # Restart dojo
@@ -237,7 +247,7 @@ uninstall() {
 
   if [ $launchUninstall -eq 0 ]; then
     yamlFiles=$(select_yaml_files)
-    eval "docker compose $yamlFiles down --rmi all"
+    eval "$docker_compose $yamlFiles down --rmi all"
     docker volume prune -f
     return 0
   else
@@ -313,7 +323,7 @@ upgrade() {
     # Rebuild the images (with or without cache)
     if [ $noCache -eq 0 ]; then
       echo -e "\nDeleting Dojo containers and images."
-      eval "docker compose $yamlFiles down --rmi all"
+      eval "$docker_compose $yamlFiles down --rmi all"
     fi
     echo -e "\nStarting the upgrade of Dojo.\n"
     if [ $noCache -eq 0 ]; then
@@ -415,7 +425,7 @@ whirlpool() {
       eval "docker exec -it whirlpool rm -f /home/whirlpool/.whirlpool-cli/*.json"
       eval "docker exec -it whirlpool rm -f /home/whirlpool/.whirlpool-cli/whirlpool-cli-config.properties"
       yamlFiles=$(select_yaml_files)
-      eval "docker compose $yamlFiles restart whirlpool"
+      eval "$docker_compose $yamlFiles restart whirlpool"
       ;;
     * )
       echo -e "Unknown action for the whirlpool command"
@@ -438,9 +448,9 @@ tor() {
 display_logs() {
   yamlFiles=$(select_yaml_files)
   if [ $2 -eq 0 ]; then
-    docker compose $yamlFiles logs --tail=50 --follow $1
+    $docker_compose $yamlFiles logs --tail=50 --follow $1
   else
-    docker compose $yamlFiles logs --tail=$2 $1
+    $docker_compose $yamlFiles logs --tail=$2 $1
   fi
 }
 
