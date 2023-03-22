@@ -35,7 +35,7 @@
 
 ### Notable changes ###
 
-#### Updated to upstream v1.19.0 ####
+#### Updated to upstream v1.19.1 ####
 
 
 #### Updated Bitcoin Core v24.0.1 ####
@@ -68,6 +68,9 @@ This version of WHirlpool CLI brings several stability improvements that will he
 - [f3767966](https://code.samourai.io/dojo/samourai-dojo/-/commit/f3767966) - remove basic auth for BTC-RPC Explorer
 - [e5de92d8](https://code.samourai.io/dojo/samourai-dojo/-/commit/e5de92d8) - use custom version of BTC-RPC Explorer to prevent leaks
 - [3675df6f](https://code.samourai.io/dojo/samourai-dojo/-/commit/3675df6f) - inter-process communication for importer
+
+#### Fixes ####
+- [b639c60f](https://code.samourai.io/dojo/samourai-dojo/-/commit/b639c60f) - allow apikey to be passed as query parameter
 
 ### Credits ###
 - DojoCoder
