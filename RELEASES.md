@@ -35,7 +35,7 @@
 
 ### Notable changes ###
 
-#### Updated to upstream v1.19.1 ####
+#### Updated to upstream v1.19.2 ####
 
 
 #### Updated Bitcoin Core v24.0.1 ####
@@ -71,6 +71,10 @@ This version of WHirlpool CLI brings several stability improvements that will he
 
 #### Fixes ####
 - [b639c60f](https://code.samourai.io/dojo/samourai-dojo/-/commit/b639c60f) - allow apikey to be passed as query parameter
+
+#### Changes ####
+- [d4b70286](d4b70286) - tweak IPC for remote importer
+- [fb35ebf9](fb35ebf9) - added IPC to auth REST API
 
 ### Credits ###
 - DojoCoder
