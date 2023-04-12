@@ -2,7 +2,7 @@
 set -e
 
 echo "auth = \"${BITCOIND_RPC_USER}:${BITCOIND_RPC_PASSWORD}\"" > electrs.toml
-echo "server_banner = \"Welcome to your RoninDojo ${DOJO_VERSION_TAG} Electrs Server!\"" >> electrs.toml
+echo "server_banner = \"Welcome to your RoninDojo ${RONINDOJO_VERSION_TAG} Electrs Server!\"" >> electrs.toml
 
 indexer_options=(
   --log-filters="INFO"

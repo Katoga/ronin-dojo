@@ -407,7 +407,7 @@ onion() {
 
 # Display the version of this dojo
 version() {
-  echo "Dojo v$DOJO_VERSION_TAG"
+  echo "RoninDojo v$RONINDOJO_VERSION_TAG"
 }
 
 # Interact with whirlpool-cli

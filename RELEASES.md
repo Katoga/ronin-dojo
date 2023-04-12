@@ -3,6 +3,7 @@
 
 ## Releases ##
 
+- [v2.0.0](#ronindojo-dojo-v200)
 - [v1.18.1](#samourai-dojo-v1181)
 - [v1.18.0](#samourai-dojo-v1180)
 - [v1.17.0](#samourai-dojo-v1170)
@@ -27,6 +28,22 @@
 - [v1.3.0](#samourai-dojo-v130)
 - [v1.2.0](#samourai-dojo-v120)
 - [v1.1.0](#samourai-dojo-v110)
+
+## RoninDojo Dojo v2.0.0 ##
+
+### Notable changes ###
+
+#### Versioning change ####
+Starting from this version, this fork of dojo/samourai-dojo> wil now have its own versioning under ronindojo/samourai-dojo>.
+
+### Change log ###
+
+#### Features ####
+- [192dc7b0](https://code.samourai.io/ronindojo/samourai-dojo/-/commit/192dc7b0) - bitcoind now reports the RoninDojo version tag of dojo.
+
+### Credits ###
+- dammkewl
+
 
 ## Samourai Dojo v1.18.1 ##
 
