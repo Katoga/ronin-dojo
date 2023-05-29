@@ -3,7 +3,7 @@
 
 ## Releases ##
 
-- [v2.0.1](#ronindojo-dojo-v201)
+- [VERSIONPENDING](#VERSIONPENDING)
 - [v2.1.0](#ronindojo-dojo-v210)
 - [v2.0.0](#ronindojo-dojo-v200)
 - [v1.18.1](#samourai-dojo-v1181)
@@ -31,12 +31,12 @@
 - [v1.2.0](#samourai-dojo-v120)
 - [v1.1.0](#samourai-dojo-v110)
 
-## RoninDojo Dojo v2.1.0 ##
+## VERSIONPENDING ##
 
 ### Notable changes ###
 
 #### Updated to upstream v1.20.0 ####
-
+Cherrypicked the upstream releases v1.19.0, v1.19.1, v1.19.2, v1.20.0, that were published by upstream since previous RoninDojo release. The following documented notable changes are copied from upstream.
 
 #### Updated Bitcoin Core v24.0.1 ####
 This version of Bitcoin Core has a support for `-mempoolfullrbf` option. This option is disabled by default in Samourai Dojo.
@@ -49,53 +49,11 @@ This version of WHirlpool CLI brings several stability improvements that will he
 
 ### Change log ###
 
-#### Features ####
-- [MR 292](https://code.samourai.io/dojo/samourai-dojo/-/merge_requests/292) - major tracker optimizations
-- [b4b891a3](https://code.samourai.io/dojo/samourai-dojo/-/commit/b4b891a3) - log error from parallel address derivation service
-- [624eddf8](https://code.samourai.io/dojo/samourai-dojo/-/commit/624eddf8) - adjusted nginx gzip settings
-- [ebb112ea](https://code.samourai.io/dojo/samourai-dojo/-/commit/ebb112ea) - refactored xlatXPUB function
-- [8a2f49d0](https://code.samourai.io/dojo/samourai-dojo/-/commit/8a2f49d0) - added ability to display full tx HEX in DMT
-- [1a868a3e](https://code.samourai.io/dojo/samourai-dojo/-/commit/1a868a3e) - updated to Bitcoin Core v25.0
-- [1e269465](https://code.samourai.io/dojo/samourai-dojo/-/commit/1e269465) - updated Node.js containers to v18
-- [5115cc46](https://code.samourai.io/dojo/samourai-dojo/-/commit/5115cc46) - updated to Bitcoin Core v24.0.1
-- [f9674dd9](https://code.samourai.io/dojo/samourai-dojo/-/commit/f9674dd9) - updated Whirlpool CLI to v0.10.16
-- [02cc549e](https://code.samourai.io/dojo/samourai-dojo/-/commit/02cc549e) - updated to Tor v0.4.7.13
-- [3df9b526](https://code.samourai.io/dojo/samourai-dojo/-/commit/3df9b526) - updated bitcoinjs-lib
-- [dc0edf9f](https://code.samourai.io/dojo/samourai-dojo/-/commit/dc0edf9f) - added noscript warning to DMT
-- [991546a4](https://code.samourai.io/dojo/samourai-dojo/-/commit/991546a4) - added option to log-in via Auth47
-
-#### Architecture ####
-- [eb4e1ba4](https://code.samourai.io/dojo/samourai-dojo/-/commit/eb4e1ba4) - read address from scriptPubKey object
-- [1a9ae068](https://code.samourai.io/dojo/samourai-dojo/-/commit/1a9ae068) - removed passport.js
-
-#### Other ####
-- [cfa68b01](https://code.samourai.io/dojo/samourai-dojo/-/commit/cfa68b01), [8a72a093](https://code.samourai.io/dojo/samourai-dojo/-/commit/8a72a093) updated Node.js dependencies
-- [2d7e408c](https://code.samourai.io/dojo/samourai-dojo/-/commit/2d7e408c) - fixed ESLint errors
-- [eb2d4c5e](https://code.samourai.io/dojo/samourai-dojo/-/commit/eb2d4c5e) - updated engines field
-- [f3767966](https://code.samourai.io/dojo/samourai-dojo/-/commit/f3767966) - remove basic auth for BTC-RPC Explorer
-- [e5de92d8](https://code.samourai.io/dojo/samourai-dojo/-/commit/e5de92d8) - use custom version of BTC-RPC Explorer to prevent leaks
-- [3675df6f](https://code.samourai.io/dojo/samourai-dojo/-/commit/3675df6f) - inter-process communication for importer
-
-#### Bugfixes
-- [272098d8](https://code.samourai.io/dojo/samourai-dojo/-/commit/272098d8) - properly log mysql lock errors
-- [f79c2ada](https://code.samourai.io/dojo/samourai-dojo/-/commit/f79c2ada) - fixed mysql queries in CLI scripts
-
-#### Fixes ####
-- [b639c60f](https://code.samourai.io/dojo/samourai-dojo/-/commit/b639c60f) - allow apikey to be passed as query parameter
-
-#### Changes ####
-- [d4b70286](d4b70286) - tweak IPC for remote importer
-- [fb35ebf9](fb35ebf9) - added IPC to auth REST API
-
-#### Chores
-- [76fd4bee](https://code.samourai.io/dojo/samourai-dojo/-/commit/76fd4bee), [26bfd550](https://code.samourai.io/dojo/samourai-dojo/-/commit/26bfd550) - raised IBD limit
-- [7a8d7f53](https://code.samourai.io/dojo/samourai-dojo/-/commit/7a8d7f53) - removed unnecessary promise
-- [880b0430](https://code.samourai.io/dojo/samourai-dojo/-/commit/880b0430) - updated tx cache description
-- [b1f2db09](https://code.samourai.io/dojo/samourai-dojo/-/commit/b1f2db09) - updated Node.js dependencies
-- [79497903](https://code.samourai.io/dojo/samourai-dojo/-/commit/79497903) - updated auth47
-- [66c362ed](https://code.samourai.io/dojo/samourai-dojo/-/commit/66c362ed) - fixed ESlint errors
-- [05ac896f](https://code.samourai.io/dojo/samourai-dojo/-/commit/05ac896f) - removed unnecessary bs58 dependency
-- [88315bb1](https://code.samourai.io/dojo/samourai-dojo/-/commit/88315bb1), [48c9d289](https://code.samourai.io/dojo/samourai-dojo/-/commit/48c9d289) - JSdoc updates
+#### Cherrypicks ####
+- [202abe4d](https://code.samourai.io/ronindojo/samourai-dojo/-/commit/202abe4d) - v1.20.0
+- [2efda391](https://code.samourai.io/ronindojo/samourai-dojo/-/commit/2efda391) - v1.19.2
+- [8454d167](https://code.samourai.io/ronindojo/samourai-dojo/-/commit/8454d167) - v1.19.1
+- [93e07729](https://code.samourai.io/ronindojo/samourai-dojo/-/commit/93e07729) - v1.19.0
 
 ### Credits ###
 - DojoCoder
