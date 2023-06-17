@@ -38,6 +38,7 @@
 - [91e7b284](https://code.samourai.io/ronindojo/samourai-dojo/-/commit/91e7b284) - Set INDEXER_EXTERNAL_IP to 0.0.0.0 by default.
 
 ### Credits ###
+- DojoCoder
 - dammkewl
 
 
