@@ -47,7 +47,7 @@ INDEXER_EXTERNAL=off
 #   linux: 127.0.0.1
 #   macos or windows: IP address of the VM running the docker host
 # Type: string
-INDEXER_EXTERNAL_IP=127.0.0.1
+INDEXER_EXTERNAL_IP=0.0.0.0
 
 
 #

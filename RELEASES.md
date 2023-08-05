@@ -3,6 +3,7 @@
 
 ## Releases ##
 
+- [v2.0.1](#ronindojo-dojo-v201)
 - [v2.0.0](#ronindojo-dojo-v200)
 - [v1.18.1](#samourai-dojo-v1181)
 - [v1.18.0](#samourai-dojo-v1180)
@@ -28,6 +29,18 @@
 - [v1.3.0](#samourai-dojo-v130)
 - [v1.2.0](#samourai-dojo-v120)
 - [v1.1.0](#samourai-dojo-v110)
+
+## RoninDojo Dojo v2.0.1 ##
+
+### Change log ###
+
+#### Features ####
+- [91e7b284](https://code.samourai.io/ronindojo/samourai-dojo/-/commit/91e7b284) - Set INDEXER_EXTERNAL_IP to 0.0.0.0 by default.
+
+### Credits ###
+- DojoCoder
+- dammkewl
+
 
 ## RoninDojo Dojo v2.0.0 ##
 
