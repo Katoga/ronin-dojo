@@ -11,13 +11,13 @@ import hdaHelper from '../lib/bitcoin/hd-accounts-helper.js'
 import db from '../lib/db/mysql-db-wrapper.js'
 import network from '../lib/bitcoin/network.js'
 import keysFile from '../keys/index.js'
-import TransactionsBundle from './transactions-bundle.js'
+import { TransactionsCache } from './transactions-cache.js'
 
 const keys = keysFile[network.key]
 const gapLimit = [keys.gap.external, keys.gap.internal]
 
 /**
- * @typedef {import('bitcoinjs-lib').Transaction} Transaction
+ * @typedef {import('bitcoinjs-lib').Transaction} bitcoin.Transaction
  */
 
 /**
@@ -26,57 +26,59 @@ const gapLimit = [keys.gap.external, keys.gap.internal]
 class Transaction {
 
     /**
-   * Constructor
-   * @param {Transaction} tx - transaction object
-   */
+     * Constructor
+     * @param {bitcoin.Transaction} tx - transaction object
+     */
     constructor(tx) {
+        /**
+         * @type {bitcoin.Transaction}
+         */
         this.tx = tx
+        /**
+         * @type {string}
+         */
         this.txid = this.tx.getId()
-        // Id of transaction stored in db
+        // ID of transaction stored in db
+        /**
+         * @type {number | null}
+         */
         this.storedTxnID = null
-        // Should this transaction be broadcast out to connected clients?
+        /**
+         * Should this transaction be broadcast out to connected clients?
+         * @type {boolean}
+         */
         this.doBroadcast = false
     }
 
     /**
-   * Register transaction in db if it's a transaction of interest
-   * @returns {object} returns a composite result object
-   *  {
-   *    tx: <transaction_as_stored_in_db>,
-   *    broadcast: <boolean>
-   *  }
-   */
+     * Register transaction in db if it's a transaction of interest
+     * @returns {Promise<{ tx:object, broadcast: boolean }>} returns a composite result object
+     */
     async checkTransaction() {
         try {
-            // Process transaction inputs
-            await this.processInputs()
-
-            // Process transaction outputs
-            await this.processOutputs()
+            // Process transaction inputs and outputs
+            await Promise.all([this.processInputs(), this.processOutputs()])
 
             // If this point reached with no errors,
             // store the fact that this transaction was checked.
-            TransactionsBundle.cache.set(this.txid, Date.now())
-
-            const tx = await db.getTransaction(this.txid)
+            TransactionsCache.set(this.txid, this.doBroadcast)
 
             return {
-                tx: tx,
                 broadcast: this.doBroadcast
             }
 
-        } catch(error) {
+        } catch (error) {
             Logger.error(error, 'Tracker : Transaction.checkTransaction()')
             throw error
         }
     }
 
     /**
-   * Process transaction inputs
-   * @returns {Promise}
-   */
+     * Process transaction inputs
+     * @returns {Promise<void>}
+     */
     async processInputs() {
-    // Array of inputs spent
+        // Array of inputs spent
         const spends = []
         // Store input indices, keyed by `txid-outindex` for easy retrieval
         const indexedInputs = {}
@@ -90,7 +92,7 @@ class Transaction {
 
         for (let input of this.tx.ins) {
             const spendTxid = Buffer.from(input.hash).reverse().toString('hex')
-            spends.push({txid:spendTxid, index:input.index})
+            spends.push({ txid: spendTxid, index: input.index })
             indexedInputs[`${spendTxid}-${input.index}`] = index
             index++
         }
@@ -143,26 +145,27 @@ class Transaction {
             const txs = await db.getTransactionsById(doubleSpentTxnIDs)
 
             for (let tx of txs)
-                TransactionsBundle.cache.delete(tx.txnTxid)
+                TransactionsCache.delete(tx.txnTxid)
 
             await db.deleteTransactionsByID(doubleSpentTxnIDs)
         }
     }
 
     /**
-   * Process transaction outputs
-   * @returns {Promise}
-   */
+     * Process transaction outputs
+     * @returns {Promise<void>}
+     */
     async processOutputs() {
-    // Store outputs, keyed by address. Values are arrays of outputs
+        // Store outputs, keyed by address. Values are arrays of outputs
         const indexedOutputs = {}
 
         // Extracts outputs information
         let index = 0
 
         for (let output of this.tx.outs) {
-            try {
-                const address = addrHelper.outputScript2Address(output.script)
+            const address = addrHelper.outputScript2Address(output.script)
+
+            if (address) {
                 if (!indexedOutputs[address])
                     indexedOutputs[address] = []
 
@@ -171,8 +174,7 @@ class Transaction {
                     value: output.value,
                     script: output.script.toString('hex'),
                 })
-                // eslint-disable-next-line no-empty
-            } catch{}
+            }
             index++
         }
 
@@ -186,7 +188,7 @@ class Transaction {
         const result = await db.getHDAccountsByAddresses(addresses)
 
         // Get outputs spending to loose addresses first
-        const aLooseAddr = await this._processOutputsLooseAddresses(result.loose, indexedOutputs)
+        const aLooseAddr = this._processOutputsLooseAddresses(result.loose, indexedOutputs)
         fundedAddresses = [...fundedAddresses, ...aLooseAddr]
 
         // Get outputs spending to a tracked account
@@ -219,14 +221,14 @@ class Transaction {
     }
 
     /**
-   * Process outputs sending to tracked loose addresses
-   * @param {object[]} addresses - array of address objects
-   * @param {object} indexedOutputs - outputs indexed by address
-   * @returns {Promise<object[]>} return an array of funded addresses
-   *  {addrID: ..., outIndex: ..., outAmount: ..., outScript: ...}
-   */
-    async _processOutputsLooseAddresses(addresses, indexedOutputs) {
-    // Store a list of known addresses that received funds
+     * Process outputs sending to tracked loose addresses
+     * @param {object[]} addresses - array of address objects
+     * @param {object} indexedOutputs - outputs indexed by address
+     * @returns {object[]} return an array of funded addresses
+     *  {addrID: ..., outIndex: ..., outAmount: ..., outScript: ...}
+     */
+    _processOutputsLooseAddresses(addresses, indexedOutputs) {
+        // Store a list of known addresses that received funds
         const fundedAddresses = []
 
         // Get outputs spending to loose addresses first
@@ -247,14 +249,14 @@ class Transaction {
     }
 
     /**
-   * Process outputs sending to tracked hd accounts
-   * @param {object[]} hdAccounts - array of hd account objects
-   * @param {object} indexedOutputs - outputs indexed by address
-   * @returns {Promise<object[]>} return an array of funded addresses
-   *  {addrID: ..., outIndex: ..., outAmount: ..., outScript: ...}
-   */
+     * Process outputs sending to tracked hd accounts
+     * @param {object[]} hdAccounts - array of hd account objects
+     * @param {object} indexedOutputs - outputs indexed by address
+     * @returns {Promise<object[]>} return an array of funded addresses
+     *  {addrID: ..., outIndex: ..., outAmount: ..., outScript: ...}
+     */
     async _processOutputsHdAccounts(hdAccounts, indexedOutputs) {
-    // Store a list of known addresses that received funds
+        // Store a list of known addresses that received funds
         const fundedAddresses = []
         const xpubList = Object.keys(hdAccounts)
 
@@ -290,22 +292,22 @@ class Transaction {
     }
 
     /**
-   * Derive new addresses for a hd account
-   * Check if tx addresses are at or beyond the next unused
-   * index for the HD chain. Derive additional addresses
-   * to replace the gap limit and add those addresses to
-   * the database. Make sure to account for tx sending to
-   * newly-derived addresses.
-   *
-   * @param {string} xpub
-   * @param {object} hdAccount - hd account object
-   * @param {object} indexedOutputs - outputs indexed by address
-   * @returns {Promise<object[]>} returns an array of the new addresses used
-   */
+     * Derive new addresses for a hd account
+     * Check if tx addresses are at or beyond the next unused
+     * index for the HD chain. Derive additional addresses
+     * to replace the gap limit and add those addresses to
+     * the database. Make sure to account for tx sending to
+     * newly-derived addresses.
+     *
+     * @param {string} xpub
+     * @param {object} hdAccount - hd account object
+     * @param {object} indexedOutputs - outputs indexed by address
+     * @returns {Promise<object[]>} returns an array of the new addresses used
+     */
     async _deriveNewAddresses(xpub, hdAccount, indexedOutputs) {
         const hdType = hdAccount.hdType
 
-        let derivedIndices = [-1,-1]
+        let derivedIndices = [-1, -1]
 
         // Get maximum derived address indices for each chain
         derivedIndices = await db.getHDAccountDerivedIndices(xpub)
@@ -317,7 +319,7 @@ class Transaction {
         const usedNewAddresses = {}
 
         // Get the maximum used index in the addresses
-        for (let chain of [0,1]) {
+        for (let chain of [0, 1]) {
             // Get addresses for this account that are on this chain
             const chainAddresses = hdAccount.addresses.filter(v => {
                 return v.hdAddrChain === chain
@@ -397,9 +399,9 @@ class Transaction {
 
 
     /**
-   * Store the transaction in database
-   * @returns {Promise}
-   */
+     * Store the transaction in database
+     * @returns {Promise}
+     */
     async _ensureTransaction() {
         if (this.storedTxnID == null) {
             this.storedTxnID = await db.ensureTransactionId(this.txid)

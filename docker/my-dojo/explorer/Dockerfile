@@ -1,11 +1,11 @@
-FROM    node:16-alpine AS builder
+FROM    node:18-alpine AS builder
 
 ENV     NODE_ENV             production
 
 ENV     APP_DIR              /home/node/app
 
-ENV     EXPLORER_URL         https://github.com/janoside/btc-rpc-explorer/archive
-ENV     EXPLORER_VERSION     3.3.0
+ENV     EXPLORER_VERSION     3.3.0+SW
+ENV     EXPLORER_URL         https://code.samourai.io/dojo/btc-rpc-explorer/-/archive/v$EXPLORER_VERSION/btc-rpc-explorer-v$EXPLORER_VERSION.tar.gz
 
 # Install netcat
 RUN     set -ex && \
@@ -18,13 +18,13 @@ RUN     set -ex && \
 # Download the source code and install it
 RUN     set -ex && \
         mkdir "$APP_DIR" && \
-        wget -qO explorer.tar.gz "$EXPLORER_URL/v$EXPLORER_VERSION.tar.gz" && \
+        wget -qO explorer.tar.gz "$EXPLORER_URL" && \
         tar -xzvf explorer.tar.gz -C "$APP_DIR/" --strip-components 1 && \
         rm explorer.tar.gz && \
         cd "$APP_DIR" && \
         npm install --omit=dev
 
-FROM    node:16-alpine
+FROM    node:18-alpine
 
 ENV     NODE_ENV        production
 ENV     APP_DIR         /home/node/app
