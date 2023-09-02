@@ -3,7 +3,7 @@
 
 ## Releases ##
 
-- [VERSIONPENDING](#VERSIONPENDING)
+- [v2.0.2](#VERSIONPENDING)
 - [v2.0.1](#ronindojo-dojo-v201)
 - [v2.0.0](#ronindojo-dojo-v200)
 - [v1.18.1](#samourai-dojo-v1181)
@@ -31,7 +31,7 @@
 - [v1.2.0](#samourai-dojo-v120)
 - [v1.1.0](#samourai-dojo-v110)
 
-## VERSIONPENDING ##
+## RoninDojo Dojo v2.0.2 ##
 
 ### Notable changes ###
 
@@ -46,6 +46,9 @@ Users are now able to add their payment code. Inside `conf/docker-node.conf` jus
 
 #### Updated Whirlpool CLI v0.10.16 ####
 This version of WHirlpool CLI brings several stability improvements that will help mixing to keep running even with Tor network disruptions.
+
+#### Updated Explorer 3.3.0+SW ####
+Explorer now uses node 18, necessary since upstream dependencies have made this a requirement.
 
 ### Change log ###
 
