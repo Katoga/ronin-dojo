@@ -3,6 +3,7 @@
 
 ## Releases ##
 
+- [v2.0.2](#VERSIONPENDING)
 - [v2.0.1](#ronindojo-dojo-v201)
 - [v2.0.0](#ronindojo-dojo-v200)
 - [v1.18.1](#samourai-dojo-v1181)
@@ -29,6 +30,37 @@
 - [v1.3.0](#samourai-dojo-v130)
 - [v1.2.0](#samourai-dojo-v120)
 - [v1.1.0](#samourai-dojo-v110)
+
+## RoninDojo Dojo v2.0.2 ##
+
+### Notable changes ###
+
+#### Updated to upstream v1.20.0 ####
+Cherrypicked the upstream releases v1.19.0, v1.19.1, v1.19.2, v1.20.0, that were published by upstream since previous RoninDojo release. The following documented notable changes are copied from upstream.
+
+#### Updated Bitcoin Core v24.0.1 ####
+This version of Bitcoin Core has a support for `-mempoolfullrbf` option. This option is disabled by default in Samourai Dojo.
+
+#### Added option to use Auth47 for DMT auth ####
+Users are now able to add their payment code. Inside `conf/docker-node.conf` just assign your payment code to the `NODE_PAYMENT_CODE` variable.
+
+#### Updated Whirlpool CLI v0.10.16 ####
+This version of WHirlpool CLI brings several stability improvements that will help mixing to keep running even with Tor network disruptions.
+
+#### Updated Explorer 3.3.0+SW ####
+Explorer now uses node 18, necessary since upstream dependencies have made this a requirement.
+
+### Change log ###
+
+#### Cherrypicks ####
+- [202abe4d](https://code.samourai.io/ronindojo/samourai-dojo/-/commit/202abe4d) - v1.20.0
+- [2efda391](https://code.samourai.io/ronindojo/samourai-dojo/-/commit/2efda391) - v1.19.2
+- [8454d167](https://code.samourai.io/ronindojo/samourai-dojo/-/commit/8454d167) - v1.19.1
+- [93e07729](https://code.samourai.io/ronindojo/samourai-dojo/-/commit/93e07729) - v1.19.0
+
+### Credits ###
+- DojoCoder
+- dammkewl
 
 ## RoninDojo Dojo v2.0.1 ##
 

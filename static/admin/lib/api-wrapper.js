@@ -23,6 +23,23 @@ const lib_api = {
     },
 
     /**
+     * Get new AUTH47 URI
+     */
+    getAuth47Uri: () => {
+        const uri = `${lib_api.baseUri}/auth/auth47/uri`
+        return lib_api.sendGetJson(uri, {})
+    },
+
+    /**
+     * Get status of AUTH47 request
+     * @param nonce {string}
+     */
+    getAuth47Status: (nonce) => {
+        const uri = `${lib_api.baseUri}/auth/auth47/status/${nonce}`
+        return lib_api.sendGetJson(uri, {})
+    },
+
+    /**
      * API Status
      */
     getApiStatus: () => {
@@ -37,15 +54,6 @@ const lib_api = {
     getPairingInfo: () => {
         let prefix = conf.prefixes.support
         let uri = `${lib_api.baseUri}/${prefix}/pairing`
-        return lib_api.sendGetUriEncoded(uri, {})
-    },
-
-    /**
-     * Get block explorer pairing info
-     */
-    getExplorerPairingInfo: () => {
-        let prefix = conf.prefixes.support
-        let uri = `${lib_api.baseUri}/${prefix}/pairing/explorer`
         return lib_api.sendGetUriEncoded(uri, {})
     },
 
@@ -158,6 +166,14 @@ const lib_api = {
     },
 
     /**
+     * Raw transaction
+     */
+    getRawTransaction: (txid) => {
+        const uri =   `${lib_api.baseUri}/tx/${txid}/hex`
+        return lib_api.sendGetUriEncoded(uri)
+    },
+
+    /**
      * Transactions
      */
     getTransactions: (args) => {
@@ -184,7 +200,7 @@ const lib_api = {
     /**
      * HTTP requests methods
      */
-    sendGetUriEncoded: async (uri, data) => {
+    sendGetUriEncoded: async (uri, data = {}) => {
         data.at = lib_auth.getAccessToken()
 
         const searchParams = new URLSearchParams(data).toString()
