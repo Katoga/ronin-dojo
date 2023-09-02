@@ -47,6 +47,9 @@ Users are now able to add their payment code. Inside `conf/docker-node.conf` jus
 #### Updated Whirlpool CLI v0.10.16 ####
 This version of WHirlpool CLI brings several stability improvements that will help mixing to keep running even with Tor network disruptions.
 
+#### Updated Explorer 3.3.0+SW ####
+Explorer now uses node 18, necessary since upstream dependencies have made this a requirement.
+
 ### Change log ###
 
 #### Cherrypicks ####
