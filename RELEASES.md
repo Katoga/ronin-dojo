@@ -3,7 +3,8 @@
 
 ## Releases ##
 
-- [v2.0.2](#VERSIONPENDING)
+- [v2.1.0](#ronindojo-dojo-v210)
+- [v2.0.2](#ronindojo-dojo-v202)
 - [v2.0.1](#ronindojo-dojo-v201)
 - [v2.0.0](#ronindojo-dojo-v200)
 - [v1.18.1](#samourai-dojo-v1181)
@@ -30,6 +31,12 @@
 - [v1.3.0](#samourai-dojo-v130)
 - [v1.2.0](#samourai-dojo-v120)
 - [v1.1.0](#samourai-dojo-v110)
+
+## RoninDojo Dojo v2.1.0 ##
+No notable changes.
+
+### Credits ###
+- dammkewl
 
 ## RoninDojo Dojo v2.0.2 ##
 
