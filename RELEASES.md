@@ -3,7 +3,8 @@
 
 ## Releases ##
 
-- [v2.0.2](#VERSIONPENDING)
+- [VERSIONPENDING](#ronindojo-dojo-VERSIONPENDING)
+- [v2.0.2](#ronindojo-dojo-v202)
 - [v2.0.1](#ronindojo-dojo-v201)
 - [v2.0.0](#ronindojo-dojo-v200)
 - [v1.18.1](#samourai-dojo-v1181)
@@ -30,6 +31,31 @@
 - [v1.3.0](#samourai-dojo-v130)
 - [v1.2.0](#samourai-dojo-v120)
 - [v1.1.0](#samourai-dojo-v110)
+
+## RoninDojo Dojo VERSIONPENDING ##
+
+### Notable changes
+
+#### $1 Fee Estimator
+$1 Fee Estimator has been included into Dojo. Fee estimates calculated by this tool are available on API ([doc](./doc/GET_fees_estimator.md)).
+
+### Features
+- updated to BTC-RPC Explorer 3.4.0
+- updated to Tor v0.4.8.5
+- updated to Fulcrum v1.9.1
+- added $1 Fee Estimator
+- adjusted standard fee estimation
+- updated MariaDB Docker image
+- updated Nginx Docker image
+
+### Change log ###
+
+#### Cherrypicks ####
+- [d0872ddc](https://code.samourai.io/ronindojo/samourai-dojo/-/commit/d0872ddc) - v1.21.0
+
+### Credits ###
+- DojoCoder
+- dammkewl
 
 ## RoninDojo Dojo v2.0.2 ##
 
