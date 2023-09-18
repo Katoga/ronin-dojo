@@ -48,6 +48,11 @@ $1 Fee Estimator has been included into Dojo. Fee estimates calculated by this t
 - updated MariaDB Docker image
 - updated Nginx Docker image
 
+### Change log ###
+
+#### Cherrypicks ####
+- [d0872ddc](https://code.samourai.io/ronindojo/samourai-dojo/-/commit/d0872ddc) - v1.21.0
+
 ### Credits ###
 - DojoCoder
 - dammkewl
