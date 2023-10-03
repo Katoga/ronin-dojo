@@ -3,7 +3,7 @@
 
 ## Releases ##
 
-- [VERSIONPENDING](#ronindojo-dojo-VERSIONPENDING)
+- [v2.1.0](#ronindojo-dojo-v210)
 - [v2.0.2](#ronindojo-dojo-v202)
 - [v2.0.1](#ronindojo-dojo-v201)
 - [v2.0.0](#ronindojo-dojo-v200)
@@ -32,7 +32,7 @@
 - [v1.2.0](#samourai-dojo-v120)
 - [v1.1.0](#samourai-dojo-v110)
 
-## RoninDojo Dojo VERSIONPENDING ##
+## RoninDojo Dojo v2.1.0 ##
 
 ### Notable changes
 
