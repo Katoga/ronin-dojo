@@ -35,13 +35,8 @@
 
 ## RoninDojo Dojo v2.1.1 ##
 
-### Notable changes
-
-TODO
-
 ### Change log ###
-
-TODO
+This is a version bump on dojo, the changes for this version are only in RoninDojo.
 
 ### Credits ###
 - dammkewl
