@@ -3,6 +3,7 @@
 
 ## Releases ##
 
+- [v2.1.1](#ronindojo-dojo-v211)
 - [v2.1.0](#ronindojo-dojo-v210)
 - [v2.0.2](#ronindojo-dojo-v202)
 - [v2.0.1](#ronindojo-dojo-v201)
@@ -32,6 +33,15 @@
 - [v1.2.0](#samourai-dojo-v120)
 - [v1.1.0](#samourai-dojo-v110)
 
+## RoninDojo Dojo v2.1.1 ##
+
+### Change log ###
+This is a version bump on dojo, the changes for this version are only in RoninDojo.
+
+### Credits ###
+- dammkewl
+
+
 ## RoninDojo Dojo v2.1.0 ##
 
 ### Notable changes
@@ -56,6 +66,7 @@ $1 Fee Estimator has been included into Dojo. Fee estimates calculated by this t
 ### Credits ###
 - DojoCoder
 - dammkewl
+
 
 ## RoninDojo Dojo v2.0.2 ##
 
