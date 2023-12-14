@@ -3,6 +3,7 @@
 
 ## Releases ##
 
+- [v2.1.2](#ronindojo-dojo-v212)
 - [v2.1.1](#ronindojo-dojo-v211)
 - [v2.1.0](#ronindojo-dojo-v210)
 - [v2.0.2](#ronindojo-dojo-v202)
@@ -32,6 +33,32 @@
 - [v1.3.0](#samourai-dojo-v130)
 - [v1.2.0](#samourai-dojo-v120)
 - [v1.1.0](#samourai-dojo-v110)
+
+## RoninDojo Dojo v2.1.2 ##
+
+### Features
+- updated Node.js docker images to v20
+- updated Tor to v0.4.8.9
+- updated Fulcrum to v1.9.7
+- updated Bitcoin Core to v26.0
+- decline connections to unsupported bitcoin clients
+- periodically ban Knots nodes
+- make explorer slow-device-mode configurable
+- added new `/seen` endpoint
+
+### Bugfixes
+- wrap unconfirmed transaction processing in try/catch
+- update DB table banned_addresses
+
+### Change log ###
+
+#### Cherrypicks ####
+- [45e1be99](https://code.samourai.io/ronindojo/samourai-dojo/-/commit/45e1be99) - v1.22.0
+
+### Credits ###
+- DojoCoder
+- dammkewl
+
 
 ## RoninDojo Dojo v2.1.1 ##
 
