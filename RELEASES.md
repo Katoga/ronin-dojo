@@ -44,7 +44,7 @@ We no longer support activating bloom filters on the bitcoind instance. This is 
 
 Source information: https://github.com/bitcoin/bitcoin/pull/16152#issuecomment-511569067.
 
-#### Updated to upstream v1.20.0 ####
+#### Updated to upstream v1.22.0 ####
 Cherrypicked the upstream release v1.22.0, that were published by upstream since previous RoninDojo release. The following documented notable changes are copied from upstream.
 
 ### Features
