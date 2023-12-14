@@ -36,6 +36,17 @@
 
 ## RoninDojo Dojo v2.1.2 ##
 
+### Notable changes
+
+#### Removal of bloom filters ####
+
+We no longer support activating bloom filters on the bitcoind instance. This is a DDOS attack vector that is too high risk.
+
+Source information: https://github.com/bitcoin/bitcoin/pull/16152#issuecomment-511569067.
+
+#### Updated to upstream v1.20.0 ####
+Cherrypicked the upstream release v1.22.0, that were published by upstream since previous RoninDojo release. The following documented notable changes are copied from upstream.
+
 ### Features
 - updated Node.js docker images to v20
 - updated Tor to v0.4.8.9
@@ -52,12 +63,16 @@
 
 ### Change log ###
 
+#### Merges ####
+- [19374063](https://code.samourai.io/ronindojo/samourai-dojo/-/commit/19374063) - removal of peerbloomfilters=1 option
+
 #### Cherrypicks ####
 - [45e1be99](https://code.samourai.io/ronindojo/samourai-dojo/-/commit/45e1be99) - v1.22.0
 
 ### Credits ###
 - DojoCoder
 - dammkewl
+- BTCxZelko
 
 
 ## RoninDojo Dojo v2.1.1 ##
