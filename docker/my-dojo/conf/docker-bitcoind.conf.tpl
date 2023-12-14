@@ -51,7 +51,7 @@ BITCOIND_LISTEN_MODE=on
 
 
 #
-# EPHEMERAL ONION ADDRESS AND BLOOM FILTERS FOR BITCOIND
+# EPHEMERAL ONION ADDRESS FOR BITCOIND
 # THESE PARAMETERS HAVE NO EFFECT IF BITCOIND_INSTALL IS SET TO OFF
 #
 
@@ -59,11 +59,6 @@ BITCOIND_LISTEN_MODE=on
 # Activation of this option is recommended for improved privacy.
 # Values: on | off
 BITCOIND_EPHEMERAL_HS=on
-
-# Enable bloom filters for other apps to leverage light client mode
-# BITCOIND_EPHEMERAL_HS should be set to "off" otherwise new connection will need to be setup after restart
-# Values: on | off
-BITCOIND_BLOOM_FILTERS=off
 
 #
 # EXPOSE BITCOIND RPC API AND ZMQ NOTIFICATIONS TO EXTERNAL APPS
