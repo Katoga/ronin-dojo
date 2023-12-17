@@ -44,12 +44,13 @@ if [ "$BITCOIND_RPC_EXTERNAL" == "on" ]; then
   bitcoind_options+=(-zmqpubrawblock=tcp://0.0.0.0:9503)
 fi
 
-if [ "$BITCOIND_BLOOM_FILTERS" == "on" ]; then
-  bitcoind_options+=(-peerbloomfilters=1)
-fi
-
 if [ "$COMMON_BTC_NETWORK" == "testnet" ]; then
   bitcoind_options+=(-testnet)
+fi
+
+if [ "$BITCOIND_CRON_JOBS" == "on" ]; then
+  declare -p | grep -E 'NET_DOJO_BITCOIND_IPV4|BITCOIND_RPC_PORT|BITCOIND_RPC_USER|BITCOIND_RPC_PASSWORD' > "$HOME/container.env"
+  service cron start
 fi
 
 exec bitcoind "${bitcoind_options[@]}"

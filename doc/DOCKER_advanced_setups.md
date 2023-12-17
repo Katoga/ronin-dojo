@@ -15,7 +15,6 @@ A word of caution, though, the default values of these options try to maximize y
 - [External Bitcoin full node](#external-bitcoin-full-node)
 - [bitcoind RPC API and ZMQ notifications exposed to external apps](#bitcoind-rpc-api-and-zmq-notifications-exposed-to-external-apps)
 - [Static onion address for bitcoind hidden service](#static-onion-address-for-bitcoind-hidden-service)
-- [Enable Bloom filters in Bitcoin Core](#enable-bloom-filters)
 - [Configure Tor Bridges](#configure-tor-bridges)
 - [Support of testnet](#support-of-testnet)
 
@@ -454,36 +453,6 @@ nano ./conf/docker-bitcoind.conf
 ```
 
 Note: this option has no effect if your setup relies on a external full node (i.e. if BITCOIND_INSTALL is set to "off").
-
-## Enable Bloom filters ##
-
-By default, Bitcoin Core doesn't have bloom filters enabled. This functionality can be useful for light wallets leveraging bloom filter capability, such as Bisq.
-
-The following steps allow to enable this functionality.
-
-```sh
-# Stop your Dojo
-./dojo.sh stop
-
-# If you're installing a new Dojo, edit the docker-bitcoind.conf.tpl file
-nano ./conf/docker-bitcoind.conf.tpl
-
-# Otherwise, edit the docker-bitcoind.conf file
-nano ./conf/docker-bitcoind.conf
-
-#
-# Set the value of BITCOIND_BLOOM_FILTERS to "on"
-#
-
-# Additionally, it might be useful to keep the same onion address for bitcoin core hidden service
-# Set the value of BITCOIND_EPHEMERAL_HS to "off"
-#
-
-# Save and exit nano
-
-# Start your Dojo
-./dojo.sh start
-```
 
 ## Configure Tor Bridges ##
 
