@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+# Prevent excessive memory usage
+export MALLOC_ARENA_MAX=1
+
 # Generate RPC auth payload
 BITCOIND_RPC_AUTH=$(./rpcauth.py $BITCOIND_RPC_USER $BITCOIND_RPC_PASSWORD)
 
@@ -32,6 +35,10 @@ bitcoind_options=(
   -zmqpubrawtx=tcp://0.0.0.0:9501
   -mempoolfullrbf=0
 )
+
+if [ "$BITCOIND_PERSIST_MEMPOOL" == "on" ]; then
+  bitcoind_options+=(-persistmempool=1)
+fi
 
 if [ "$BITCOIND_LISTEN_MODE" == "on" ]; then
   bitcoind_options+=(-listen=1)
