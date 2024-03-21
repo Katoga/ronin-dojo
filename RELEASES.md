@@ -3,6 +3,7 @@
 
 ## Releases ##
 
+- [v2.1.3](#ronindojo-dojo-v213)
 - [v2.1.2](#ronindojo-dojo-v212)
 - [v2.1.1](#ronindojo-dojo-v211)
 - [v2.1.0](#ronindojo-dojo-v210)
@@ -33,6 +34,42 @@
 - [v1.3.0](#samourai-dojo-v130)
 - [v1.2.0](#samourai-dojo-v120)
 - [v1.1.0](#samourai-dojo-v110)
+
+## RoninDojo Dojo v2.1.3 ##
+
+### Notable changes
+
+#### Updated Whirlpool CLI to v1.0.1
+The update of Whirlpool CLI v1.0.0 marks the introduction of the client that can connect to the newly introduced decentralized coordinator communcation protocol over Soroban. With v1.0.1, the latest version of CLI has been pulled into RoninDojo's fork of dojo.
+
+#### Updated to upstream v1.24.1 ####
+Cherrypick-merged the upstream dojo release v1.24.1, which includes the published releases by upstream since previous RoninDojo release (v1.23.0, 1.24.0, 1.24.1). The following documented notable changes are copied from upstream.
+
+### Bugfixes
+- Don't check unconfirmed transactions after start
+- Catch error when checking docker compose version
+- Updated bash scripts to use non-TTY docker exec
+- Fix equality comparison in docker shell script
+- Prevent excessive memory usage by bitcoind
+
+### Updates
+- Updated Tor to v0.4.8.10
+- Updated Whirlpool CLI to v1.0.1
+- Updated Fulcrum to v1.10.0
+- Updated Fee Estimator to v0.5.0
+- Updated Estimator API
+- Updated dependencies
+
+### Change log ###
+
+#### Cherrypicks ####
+- [00f9ea10](https://code.samourai.io/ronindojo/samourai-dojo/-/commit/00f9ea10) - v1.24.1
+
+### Credits ###
+- DojoCoder
+- dammkewl
+- BTCxZelko
+- BrotherRabbit
 
 ## RoninDojo Dojo v2.1.2 ##
 
