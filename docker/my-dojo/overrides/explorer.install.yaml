@@ -1,5 +1,3 @@
-version: "3.7"
-
 services:
   explorer:
     image: "samouraiwallet/dojo-explorer:${DOJO_EXPLORER_VERSION_TAG}"
