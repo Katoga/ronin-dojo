@@ -18,12 +18,6 @@ else
   source ./conf/docker-explorer.conf.tpl
 fi
 
-if [ -f ./conf/docker-whirlpool.conf ]; then
-  source ./conf/docker-whirlpool.conf
-else
-  source ./conf/docker-whirlpool.conf.tpl
-fi
-
 if [ -f ./conf/docker-mempool.conf ]; then
   source ./conf/docker-mempool.conf
 else
@@ -85,9 +79,6 @@ update_config_files() {
   update_config_file ./conf/docker-indexer.conf ./conf/docker-indexer.conf.tpl
   echo "Initialized docker-indexer.conf"
 
-  update_config_file ./conf/docker-whirlpool.conf ./conf/docker-whirlpool.conf.tpl
-  echo "Initialized docker-whirlpool.conf"
-
   update_config_file ./conf/docker-mempool.conf ./conf/docker-mempool.conf.tpl
   echo "Initialized docker-mempool.conf"
 
@@ -98,13 +89,6 @@ update_config_files() {
     cp /dev/null ./nginx/dojo-explorer.conf
   fi
   echo "Initialized dojo-explorer.conf (nginx)"
-
-  if [ "$WHIRLPOOL_INSTALL" == "on" ]; then
-    cp ./nginx/whirlpool.conf ./nginx/dojo-whirlpool.conf
-  else
-    cp /dev/null ./nginx/dojo-whirlpool.conf
-  fi
-  echo "Initialized dojo-whirlpool.conf (nginx)"
 
   if [ "$COMMON_BTC_NETWORK" == "testnet" ]; then
     cp ./nginx/testnet.conf ./nginx/dojo.conf
