@@ -3,6 +3,7 @@
 
 ## Releases ##
 
+- [v2.1.4](#ronindojo-dojo-v214)
 - [v2.1.3](#ronindojo-dojo-v213)
 - [v2.1.2](#ronindojo-dojo-v212)
 - [v2.1.1](#ronindojo-dojo-v211)
@@ -34,6 +35,35 @@
 - [v1.3.0](#samourai-dojo-v130)
 - [v1.2.0](#samourai-dojo-v120)
 - [v1.1.0](#samourai-dojo-v110)
+
+## RoninDojo Dojo Dojo v2.1.4 ##
+
+### Notable changes
+
+#### Updated to upstream v1.25.0 ####
+Cherrypicked the upstream release v1.25.0, that was published by upstream since previous RoninDojo release. The following documented notable changes are copied from upstream.
+
+### Changes
+- Removed Whirlpool CLI
+- Updated Tor to v0.4.8.11
+- Removed obsolete version field from docker compose files
+- Fixed addrindexrs installation
+- Fixed btc-rpc-ecplorer installation
+- Updated Bitcoin Core to v27.0
+- Removed unnecessary bip39 dependency
+- Updated ZeroMQ
+- Updated other dependencies
+- Raised required Node.js version to v18
+- Made changes to make docker images smaller
+
+### Change log ###
+
+#### Cherrypicks ####
+https://github.com/pajasevi/samourai-dojo/commit/b59ad4b7696b4939bda6d22aa33b3fba6d1f3405) - v1.25.0
+
+### Credits ###
+- DojoCoder
+- 零火怖
 
 ## RoninDojo Dojo v2.1.3 ##
 
