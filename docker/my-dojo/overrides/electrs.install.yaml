@@ -1,5 +1,3 @@
-version: "3.7"
-
 services:
   electrs:
     image: "samouraiwallet/dojo-electrs:${DOJO_ELECTRS_VERSION_TAG}"
