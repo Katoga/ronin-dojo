@@ -3,6 +3,7 @@
 
 ## Releases ##
 
+- [v2.2.0](#ronindojo-dojo-v220)
 - [v2.1.4](#ronindojo-dojo-v214)
 - [v2.1.3](#ronindojo-dojo-v213)
 - [v2.1.2](#ronindojo-dojo-v212)
@@ -35,6 +36,41 @@
 - [v1.3.0](#samourai-dojo-v130)
 - [v1.2.0](#samourai-dojo-v120)
 - [v1.1.0](#samourai-dojo-v110)
+
+## RoninDojo Dojo v2.2.0 ##
+
+### Notable changes
+
+#### Updated to upstream v1.26.1 ####
+Cherrypicked the upstream release v1.26.0 and v1.26.1, that was published by upstream since previous RoninDojo release. The following documented notable changes are copied from upstream.
+
+### Changes RD v2.2.0
+- Added pull policies
+- Removed deprecated version field
+
+### Changes v1.26.1
+- Fixed Node.js build issues
+- Update fee estimator
+- Fixed addrindexrs installation
+- Updated Tor to v0.4.8.13
+- Updated Snowflake to v2.10.1
+
+### Changes v1.26.0
+- Updated dependencies
+- Updated Fulcrum to v1.11.1
+- Updated Bitcoin Core to v28.0 + testnet4 support
+- Updated Tor to v0.4.8.12
+- Updated MariaDB to v11.5.2
+- Updated Nginx to v1.27.1
+- Updated electrum client library
+- Added support for Snowflake Tor bridges
+- Better multistage build for Tor image
+- Switch from axios to undici
+- Updated documentation
+
+### Credits ###
+- DojoCoder
+- 零火怖
 
 ## RoninDojo Dojo Dojo v2.1.4 ##
 

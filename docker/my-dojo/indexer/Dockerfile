@@ -5,14 +5,14 @@ ENV     FILE_NAME                   v$INDEXER_VERSION.tar.gz
 ENV     FINGERPRINT_FILE_NAME       addrindexrs-v$INDEXER_VERSION-fingerprints.txt
 ENV     FINGERPRINT_SIG_FILE_NAME   $FINGERPRINT_FILE_NAME.sig
 
-ENV     INDEXER_URL                 https://github.com/pajasevi/addrindexrs/archive/refs/tags/v$INDEXER_VERSION.tar.gz
-ENV     FINGERPRINT_URL             https://github.com/pajasevi/addrindexrs/releases/download/v$INDEXER_VERSION/$FINGERPRINT_FILE_NAME
-ENV     FINGERPRINT_SIG_URL         https://github.com/pajasevi/addrindexrs/releases/download/v$INDEXER_VERSION/$FINGERPRINT_SIG_FILE_NAME
+ENV     INDEXER_URL                 https://github.com/Dojo-Open-Source-Project/addrindexrs/archive/refs/tags/v$INDEXER_VERSION.tar.gz
+ENV     FINGERPRINT_URL             https://github.com/Dojo-Open-Source-Project/addrindexrs/releases/download/v$INDEXER_VERSION/$FINGERPRINT_FILE_NAME
+ENV     FINGERPRINT_SIG_URL         https://github.com/Dojo-Open-Source-Project/addrindexrs/releases/download/v$INDEXER_VERSION/$FINGERPRINT_SIG_FILE_NAME
 
 ENV     PGP_KEY                     377DE507FDC47F020099E342CFA54E4C0CD58DF0
 
 RUN     apt-get update && \
-        apt-get install -y clang cmake wget gpg
+        apt-get install -y clang cmake wget gpg ca-certificates
 
 # Get PGP key
 RUN     gpg --batch --recv-keys $PGP_KEY

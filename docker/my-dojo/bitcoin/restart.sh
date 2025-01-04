@@ -52,7 +52,7 @@ if [ "$BITCOIND_RPC_EXTERNAL" == "on" ]; then
 fi
 
 if [ "$COMMON_BTC_NETWORK" == "testnet" ]; then
-  bitcoind_options+=(-testnet)
+  bitcoind_options+=(-testnet4)
 fi
 
 if [ "$BITCOIND_CRON_JOBS" == "on" ]; then
