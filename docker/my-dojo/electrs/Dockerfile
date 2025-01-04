@@ -1,12 +1,11 @@
-FROM    rust:1.44.1-slim-buster AS builder
+FROM    rust:1.79.0-slim-buster AS builder
 
-ENV     ELECTRS_VERSION     0.9.9
+ENV     ELECTRS_VERSION     0.10.8
 ENV     ELECTRS_URL         https://github.com/romanz/electrs/archive
-ENV     ELECTRS_SHA256      d54519fb999d1742dbfd3e2cd0970118d6c33df9e8be4f2b8aca7d13b4d20fca
+ENV     ELECTRS_SHA256      818cbccb431a69d343dbb7c732e925a118f3eafe0a45efb67610e44291e92ad1
 
 RUN     apt-get update && \
-        apt-get install -y clang cmake wget && \
-        apt-get install -y libsnappy-dev
+        apt-get install -y clang cmake wget libsnappy-dev
 
 # Install electrs
 RUN     set -ex && \
