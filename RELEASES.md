@@ -3,6 +3,7 @@
 
 ## Releases ##
 
+- [v2.2.1](#ronindojo-dojo-v221)
 - [v2.2.0](#ronindojo-dojo-v220)
 - [v2.1.4](#ronindojo-dojo-v214)
 - [v2.1.3](#ronindojo-dojo-v213)
@@ -36,6 +37,13 @@
 - [v1.3.0](#samourai-dojo-v130)
 - [v1.2.0](#samourai-dojo-v120)
 - [v1.1.0](#samourai-dojo-v110)
+
+## RoninDojo Dojo v2.2.1 ##
+
+- Fixed broken Snowflake git URL
+
+### Credits ###
+- DojoCoder
 
 ## RoninDojo Dojo v2.2.0 ##
 
