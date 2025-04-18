@@ -38,7 +38,7 @@ RUN     set -ex && \
             --disable-unittests && \
         make && make install
 
-FROM    golang:1.23-bookworm AS obfs4builder
+FROM    golang:1.24-bookworm AS obfs4builder
 
 ENV     OBFS4_URL           https://github.com/Yawning/obfs4.git
 ENV     OBFS4_VERSION       0.0.14
@@ -54,7 +54,7 @@ RUN     git clone "$OBFS4_URL" /usr/local/src/obfs4proxy && \
         go build -o obfs4proxy/obfs4proxy ./obfs4proxy && \
         cp ./obfs4proxy/obfs4proxy /usr/local/bin
 
-FROM    golang:1.23-bookworm AS snowflakebuilder
+FROM    golang:1.24-bookworm AS snowflakebuilder
 
 ENV     SNOWFLAKE_URL       https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/snowflake.git
 ENV     SNOWFLAKE_VERSION   2.10.1
