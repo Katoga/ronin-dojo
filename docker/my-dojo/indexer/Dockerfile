@@ -1,4 +1,4 @@
-FROM    rust:1.42.0-slim-buster AS builder
+FROM    rust:1.42.0-slim-bookworm AS builder
 
 ENV     INDEXER_VERSION             0.6.0
 ENV     FILE_NAME                   v$INDEXER_VERSION.tar.gz
@@ -26,7 +26,7 @@ RUN        tar -xzf "$FILE_NAME" --strip-components=1
 RUN        rm "$FILE_NAME"
 RUN        cargo install --locked --path .
 
-FROM    debian:buster-slim
+FROM    debian:bookworm-slim
 
 ENV     INDEXER_HOME        /home/indexer
 
