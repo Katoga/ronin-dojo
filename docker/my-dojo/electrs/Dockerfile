@@ -1,4 +1,4 @@
-FROM    rust:1.79.0-slim-buster AS builder
+FROM    rust:1.79.0-slim-bookworm AS builder
 
 ENV     ELECTRS_VERSION     0.10.8
 ENV     ELECTRS_URL         https://github.com/romanz/electrs/archive
@@ -19,7 +19,7 @@ RUN     set -ex && \
 RUN     cd /tmp/electrs && \
         cargo install --locked --path .
 
-FROM    debian:buster-slim
+FROM    debian:bookworm-slim
 
 ENV     ELECTRS_HOME        /home/electrs
 
@@ -30,7 +30,7 @@ COPY    --from=builder /usr/local/cargo/bin/electrs /usr/bin/electrs
 
 # Create group and user electrs
 RUN     addgroup --system -gid ${ELECTRS_LINUX_GID} electrs && \
-        adduser --system --ingroup electrs -uid ${ELECTRS_LINUX_UID} electrs
+        adduser --system --ingroup electrs -uid ${ELECTRS_LINUX_UID} --home ${ELECTRS_HOME} electrs
 
 # Create data directory
 RUN     mkdir "$ELECTRS_HOME/electrs" && \
