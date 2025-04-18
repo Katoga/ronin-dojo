@@ -1,4 +1,4 @@
-FROM    debian:bullseye-slim AS builder
+FROM    debian:bookworm-slim AS builder
 
 ENV     INDEXER_VERSION       1.11.1
 ENV     INDEXER_SHASUMS       Fulcrum-${INDEXER_VERSION}-shasums.txt
@@ -34,7 +34,7 @@ RUN     set -ex && \
         sha256sum --ignore-missing -c $INDEXER_SHASUMS && \
         tar -xzvf ${INDEXER_FILE} -C "$INDEXER_FILES" --strip-components 1
 
-FROM    debian:bullseye-slim
+FROM    debian:bookworm-slim
 
 ENV     INDEXER_FILES         /usr/fulcrum
 ENV     INDEXER_HOME          /home/fulcrum
@@ -51,7 +51,7 @@ RUN     apt-get update && \
 
 # Create group and user indexer
 RUN     addgroup --system -gid ${FULCRUM_LINUX_GID} fulcrum && \
-        adduser --system --ingroup fulcrum -uid ${FULCRUM_LINUX_UID} fulcrum
+        adduser --system --ingroup fulcrum -uid ${FULCRUM_LINUX_UID} --home ${INDEXER_HOME} fulcrum
 
 # Create data directory
 RUN     mkdir -p "$INDEXER_HOME/.fulcrum/db" && \
