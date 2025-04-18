@@ -14,7 +14,7 @@ COPY    . "$APP_DIR"
 
 # Install node modules required by the app
 RUN     cd "$APP_DIR" && \
-        npm install --omit=dev
+        npm install --max-old-space-size=512 --omit=dev
 
 FROM    node:22-alpine3.21
 
@@ -31,7 +31,7 @@ RUN     addgroup -S -g ${TOR_LINUX_GID} tor && \
         usermod -a -G tor node
 
 # Install PM2
-RUN     npm install -g pm2
+RUN     npm install --max-old-space-size=512 -g pm2
 
 # Copy app source files into APP_DIR
 COPY    --chown=node:node --from=builder $APP_DIR $APP_DIR
