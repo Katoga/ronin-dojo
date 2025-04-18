@@ -1,4 +1,4 @@
-FROM    rust:1.42.0-slim-buster AS builder
+FROM    rust:1.42.0-slim-bookworm AS builder
 
 ENV     INDEXER_VERSION             0.6.0
 ENV     FILE_NAME                   v$INDEXER_VERSION.tar.gz
@@ -26,7 +26,7 @@ RUN        tar -xzf "$FILE_NAME" --strip-components=1
 RUN        rm "$FILE_NAME"
 RUN        cargo install --locked --path .
 
-FROM    debian:buster-slim
+FROM    debian:bookworm-slim
 
 ENV     INDEXER_HOME        /home/indexer
 
@@ -37,7 +37,7 @@ COPY    --from=builder /usr/local/cargo/bin/addrindexrs /usr/bin/addrindexrs
 
 # Create group and user indexer
 RUN     addgroup --system -gid ${INDEXER_LINUX_GID} indexer && \
-        adduser --system --ingroup indexer -uid ${INDEXER_LINUX_UID} indexer
+        adduser --system --ingroup indexer -uid ${INDEXER_LINUX_UID} --home ${INDEXER_HOME} indexer
 
 # Create data directory
 RUN     mkdir "$INDEXER_HOME/addrindexrs" && \
