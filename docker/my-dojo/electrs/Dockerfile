@@ -1,4 +1,4 @@
-FROM    rust:1.79.0-slim-buster AS builder
+FROM    rust:1.79.0-slim-bookworm AS builder
 
 ENV     ELECTRS_VERSION     0.10.8
 ENV     ELECTRS_URL         https://github.com/romanz/electrs/archive
@@ -19,7 +19,7 @@ RUN     set -ex && \
 RUN     cd /tmp/electrs && \
         cargo install --locked --path .
 
-FROM    debian:buster-slim
+FROM    debian:bookworm-slim
 
 ENV     ELECTRS_HOME        /home/electrs
 
