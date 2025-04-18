@@ -1,8 +1,8 @@
 FROM    rust:1.86.0-slim-bookworm AS builder
 
-ENV     ELECTRS_VERSION     0.10.8
+ENV     ELECTRS_VERSION     0.10.9
 ENV     ELECTRS_URL         https://github.com/romanz/electrs/archive
-ENV     ELECTRS_SHA256      818cbccb431a69d343dbb7c732e925a118f3eafe0a45efb67610e44291e92ad1
+ENV     ELECTRS_SHA256      d8990bf530f886e6426f9f599894f6e8065d11b90394e76e63d709a6b3765313
 
 RUN     apt-get update && \
         apt-get install -y clang cmake wget libsnappy-dev
