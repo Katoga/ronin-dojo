@@ -1,4 +1,4 @@
-FROM    rust:1.42.0-slim-bookworm AS builder
+FROM    rust:1.86.0-slim-bookworm AS builder
 
 ENV     INDEXER_VERSION             0.6.0
 ENV     FILE_NAME                   v$INDEXER_VERSION.tar.gz
