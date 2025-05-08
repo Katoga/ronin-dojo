@@ -1,4 +1,4 @@
-FROM    node:22-alpine3.21 AS builder
+FROM    node:24-alpine3.21 AS builder
 
 ENV     NODE_ENV             production
 
@@ -21,7 +21,7 @@ RUN     set -ex && \
         npm install --save-prod zeromq@^6.0.0 && \
         npm install --omit=dev
 
-FROM    node:22-alpine3.21
+FROM    node:24-alpine3.21
 
 ENV     NODE_ENV        production
 ENV     APP_DIR         /home/node/app
