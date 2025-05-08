@@ -1,4 +1,4 @@
-FROM    node:20-alpine3.21 AS builder
+FROM    node:22-alpine3.21 AS builder
 
 ENV     NODE_ENV             production
 
@@ -18,9 +18,10 @@ RUN     set -ex && \
         tar -xzvf explorer.tar.gz -C "$APP_DIR/" --strip-components 1 && \
         rm explorer.tar.gz && \
         cd "$APP_DIR" && \
+        npm install --save-prod zeromq@^6.0.0 && \
         npm install --omit=dev
 
-FROM    node:20-alpine3.21
+FROM    node:22-alpine3.21
 
 ENV     NODE_ENV        production
 ENV     APP_DIR         /home/node/app
