@@ -1,4 +1,4 @@
-FROM    rust:1.86.0-slim-bookworm AS builder
+FROM    rust:1.87.0-slim-bookworm AS builder
 
 ENV     ELECTRS_VERSION     0.10.9
 ENV     ELECTRS_URL         https://github.com/romanz/electrs/archive
