@@ -1,5 +1,10 @@
 FROM    mariadb:11.8.2
 
+RUN apt-get update \
+  && apt-get upgrade --assume-yes --no-install-recommends \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
+
 # Copy mysql config
 COPY    ./docker/my-dojo/mysql/mysql-dojo.cnf /etc/mysql/conf.d/mysql-dojo.cnf
 
