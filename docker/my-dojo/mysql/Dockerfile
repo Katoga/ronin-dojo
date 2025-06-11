@@ -1,4 +1,4 @@
-FROM    mariadb:11.7.2
+FROM    mariadb:11.8.2
 
 # Copy mysql config
 COPY    ./docker/my-dojo/mysql/mysql-dojo.cnf /etc/mysql/conf.d/mysql-dojo.cnf
